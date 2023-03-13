@@ -3,7 +3,15 @@ Hello, everyone!
 
 [This is the organization of our group on GitHub.](https://github.com/TAQ2023DSD)
 
-[our project manager](https://github.com/Ishida-Mitsunari)
+project manager
+
+[Donald](https://github.com/Ishida-Mitsunari)
+
+our team members
+
+[Caroline](https://github.com/Asherious0)
+
+[Durable](https://github.com/Durable01)
 
 # 求实，创新，立志，图强
 白山迎旭日
