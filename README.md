@@ -13,6 +13,8 @@ our team members
 
 [Durable](https://github.com/Durable01)
 
+[Steven](https://github.com/3074239390)
+
 # 求实，创新，立志，图强
 白山迎旭日
 
