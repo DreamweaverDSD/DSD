@@ -49,7 +49,7 @@ Case:Unbind a sensor
 
 Case:Collect data
 
-Case:Predition Model
+Case:Predition Model//
 
 Case:Get the pretrained model
 
