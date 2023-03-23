@@ -1,19 +1,19 @@
 # This is the page for GUI team of distributed development of software between JLU and UTAD.
 Hello, everyone!
 
-[This is the organization of our group on GitHub.](https://github.com/TAQ2023DSD)
+[This is the organization of our group on GitHub.](https://github.com/DreamweaverDSD)
 
 
 # our team members
 
-[Donald](https://github.com/Ishida-Mitsunari)
+Project manager / Programmer [Donald](https://github.com/Ishida-Mitsunari)
 
-[Vasco](https://github.com/VascoRR001)
+System Architect / Tester [Vasco](https://github.com/VascoRR001)
 
-[Caroline](https://github.com/Asherious0)
+Requirement Analyst / Programmer [Caroline](https://github.com/Asherious0)
 
-[Durable](https://github.com/Durable01)
+Requirement Analyst / Programmer [Durable](https://github.com/Durable01)
 
-[Henry](https://github.com/3074239390)
+Liaison / Programmer [Henry](https://github.com/3074239390)
 
-[Pedro](https://github.com/orgs/DreamweaverDSD/people/al70649)
+System Architect / Tester [Pedro](https://github.com/orgs/DreamweaverDSD/people/al70649)
