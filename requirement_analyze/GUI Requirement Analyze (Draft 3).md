@@ -11,7 +11,7 @@ modified: '2023-03-21T13:16:20.710
 
 Revision History:
 
-<table><tbody><tr><td>Date</td><td>Author</td><td>Description</td></tr><tr><td>2023.3.19</td><td>Wutong Yu(Carolin)</td><td>Draw the draft of use-case diagram and write use-case specifications</td></tr><tr><td>2023.3.19</td><td>Jianling Yu(Durable)</td><td>Draw the activity diagrams</td></tr><tr><td>2023.3.21</td><td>Wutong Yu(Carolin)</td><td>Correct the use-case diagram and add more details.</td></tr></tbody></table>
+<table><tbody><tr><td>Date</td><td>Author</td><td>Description</td></tr><tr><td>2023.3.19</td><td>Wutong Yu(Carolin)</td><td>Draw the draft of use-case diagram and write use-case specifications</td></tr><tr><td>2023.3.19</td><td>Jianling Yu(Durable)</td><td>Draw the activity diagrams and modify the use-case specifications</td></tr><tr><td>2023.3.21</td><td>Wutong Yu(Carolin)</td><td>Correct the use-case diagram and add more details.</td></tr></tbody></table>
 
 ## Use Cases
 
