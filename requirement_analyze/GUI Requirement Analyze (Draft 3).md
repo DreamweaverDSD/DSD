@@ -49,14 +49,6 @@ Case:Unbind a sensor
 
 Case:Collect data
 
-Case:Start to collect data
-
-Case:Stop the collection of data
-
-Case:Choose the type of motion
-
-Case:Store the collected data
-
 Case:Predition Model
 
 Case:Get the pretrained model
