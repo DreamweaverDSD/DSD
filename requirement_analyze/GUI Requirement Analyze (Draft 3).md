@@ -57,8 +57,6 @@ Case:Train Model with motion data
 
 Case:Predict user motion
 
-Case:Reset the model
-
 Case:Data Management
 
 Case:Upload Data
