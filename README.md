@@ -18,5 +18,5 @@ Liaison / Programmer [Henry](https://github.com/3074239390)
 
 System Architect / Tester [Pedro](https://github.com/orgs/DreamweaverDSD/people/al70649)
 
-# Requirement analysis
-Week 1: [First Draft](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze)
+# Rate of progress
+Week 1: [First Draft of Requirement analysis](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze)
