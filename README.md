@@ -18,5 +18,8 @@ Liaison / Programmer [Henry](https://github.com/3074239390)
 
 System Architect / Tester [Pedro](https://github.com/orgs/DreamweaverDSD/people/al70649)
 
+# DSD Calendar
+This is the [calendar](https://github.com/michro/DSD/blob/fbfffbce1ffe1a65abc483b6da931d37942e02de/Calendar2023.pdf)
+
 # News
 Week 1: [First Draft of Requirement analysis](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze)
