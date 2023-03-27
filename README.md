@@ -23,3 +23,4 @@ This is the [calendar](https://github.com/michro/DSD/blob/fbfffbce1ffe1a65abc483
 
 # News
 Week 1: [First Draft of Requirement analysis](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze)
+Week 2: [Second Draft of Requirement analysis](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze/GUI Requirement Analyze (Draft 4).md)
