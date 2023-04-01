@@ -25,3 +25,15 @@ This is the [calendar](https://github.com/michro/DSD/blob/fbfffbce1ffe1a65abc483
 Week 1: [First Draft of Requirement analysis](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze)
 
 Week 2: [Final Version of Requirement analysis](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze)
+
+# The Gantt chart of our group
+```mermaid
+gantt
+title Gantt Chart until 4.1
+dateFormat YY-MM-DD
+section mobile app
+Requirement Analysis  :done, requirement analysis, 23-03-18,23-04-01
+System Architecture   :active, system architecture, 23-04-01, 14d
+Programming           :programming, 23-04-15, 14d
+Test                  :test, after programming, 7d
+```
