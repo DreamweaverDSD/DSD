@@ -29,7 +29,7 @@ Week 2: [Final Version of Requirement analysis](https://github.com/DreamweaverDS
 # The Gantt chart of our group
 ```mermaid
 gantt
-title Gantt Chart until 4.1
+title Gantt Chart of Dreamweaver
 dateFormat YY-MM-DD
 section mobile app
 Requirement Analysis  :done, requirement analysis, 23-03-18,23-04-01
