@@ -24,7 +24,7 @@ This is the [calendar](https://github.com/michro/DSD/blob/fbfffbce1ffe1a65abc483
 # News
 Week 1: [First Draft of Requirement analysis](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze)
 
-Week 2: [Final Version of Requirement analysis](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze)
+Week 2: [Sixth Version of Requirement analysis](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze)
 
 Week 3: [First Draft of System Architecture](https://media.discordapp.net/attachments/1085545028354576386/1092853929882173480/image.png?width=740&height=556)
 
