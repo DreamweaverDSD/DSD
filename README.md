@@ -22,11 +22,18 @@ System Architect / Tester [Pedro](https://github.com/orgs/DreamweaverDSD/people/
 This is the [calendar](https://github.com/michro/DSD/blob/fbfffbce1ffe1a65abc483b6da931d37942e02de/Calendar2023.pdf)
 
 # News
-Week 1: [First Draft of Requirement analysis](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze)
+Week 1: \
+[First Draft of Requirement analysis](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze)
 
-Week 2: [Sixth Version of Requirement analysis](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze)
+Week 2: \
+[Sixth Version of Requirement analysis](https://github.com/DreamweaverDSD/DSD/tree/main/requirement_analyze)
 
-Week 3: [First Draft of System Architecture](https://media.discordapp.net/attachments/1085545028354576386/1092853929882173480/image.png?width=740&height=556)
+Week 3:\
+4.1 Decide to start the system architecture\
+4.6 [First Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)
+
+Week4:\
+4.7 confirm with server group
 
 # The Gantt chart of our group
 ```mermaid
