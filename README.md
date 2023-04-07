@@ -30,10 +30,12 @@ Week 2: \
 
 Week 3:\
 4.1 Decide to start the system architecture\
-4.6 [First Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)
+4.4 [First Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)
 
 Week4:\
-4.7 confirm with server group
+4.6 confirm with server group\
+4.7 [Second Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)
+
 
 # The Gantt chart of our group
 ```mermaid
