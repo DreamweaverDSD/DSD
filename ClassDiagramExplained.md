@@ -138,34 +138,24 @@ public void setLogged()
 	}
 ```
 
-* __login()__ - This method calls the login method in authentication, and the setLogged method deppending on the value returned
+* __getId():int__ - returns the int value in the user's id attribute
 </br> Ex:
 
 ```csharp
-public void login()
-	{
-		if(getLogged()) return;
-		Authentication auth = new Authentication();
-		if(auth.login(emailTextBox.Text, passwordTextBox.Text)) 
-		{
-			setLogged();
-			setEmail(emailTextBox.Text);
-			return;
-		}
-		else return;
-	}
+public int getId()
+{
+	return id;
+}
 ```
 
-* __logout()__ - This method is called when the user wishes to logout of their account, calling the method setLogged()
+* __setId(int)__ - set the user's id variable to the id value found in the corresponding entry in the user database 
 </br> Ex:
 
 ```csharp
-public void logout()
-	{
-		if(!getLogged) return
-		setLogged();
-		setEmail("");
-	}
+public void setId(int id)
+{
+	this.id=id;
+}
 ```
 
 * __register()__ - This method calls the register method in authentication and setLogged method depending on the value returned
@@ -189,15 +179,33 @@ public void register()
 </br> Ex:
 
 ```csharp
-public bool login(string email, string password)
+public static void login(Usar user ,string email, string password)
 	{
-		if(httpclient.GetStringAsync(userURL + "?email=" + email).Status =="404")//We could verify for more status codes, displaying different messages
+		if(user.getLogged()) return;
+		
+		string response = httpclient.GetStringAsync(userURL + "?email=" + email);
+		if(response =="404")//We could verify for more status codes, displaying different messages
 		{
 			//warn user login failed
 			return false;
 		}
-		if(httpclient.GetStringAsync($"{userURL}/{email}/password).Result == password) return true;
-		else return false;		
+		JsonNode jsonNode = JsonNode.Parse(response);
+		string apiPassword = jsonNode["password"].ToString();
+		if(apiPassword != password) return; //warn user login failed
+		user.setLogged();
+		user.setId(Convert.ToInt32(jsonNode["id"]));		
+	}
+```
+
+* __logout()__ - This method is called when the user wishes to logout of their account, changing the user's bool variable Logged to false
+</br> Ex:
+
+```csharp
+public static void logout(User user)
+	{
+		if(!user.getLogged()) return
+		user.setLogged();
+		setId(0);//Some representation of no user
 	}
 ```
 
