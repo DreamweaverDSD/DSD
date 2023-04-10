@@ -214,7 +214,7 @@ public void setId(int id)
 </br> Ex:
 
 ```csharp
-public static user login(string email, string password)
+public static User login(string email, string password)
 	{
 		User user = new User();
 	
@@ -250,10 +250,10 @@ public static void logout(User user)
 
 * __register(string, string):user__ - This method should make a GET call to the user database API in order to check if the email the user is currently attempting to create a new account with is already in use or not. If the email is available, the method should make a POST call to the user database API, in order to create a new user entry with the email and password in question
 public static user
-
+</br> Ex:
 
 ```csharp
-public static user register(string email, string password)
+public static User register(string email, string password)
 	{
 		User user = new User();
 	
