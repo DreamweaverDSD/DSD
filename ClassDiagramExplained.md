@@ -2,7 +2,7 @@
 # <p align="center" >Class Diagram</p>
 
 ## Diagram
-![Class Diagram](https://i.imgur.com/ylpYjmH.png)
+![Class Diagram](https://i.imgur.com/EXvL04f.png)
 
 ## Method Explanation
 ### <p align = "center">User</p>
@@ -13,7 +13,10 @@
 ```csharp
 public string getUserName()
 	{	
-		return httpclient.GetStringAsync(userUrl + "/" + user.getEmail() + "/username");
+		using HttpResponseMessage response = await httpclient.GetAsync(userUrl + "/" + user.getId() + "/username");
+		response.EnsureSuccessStatusCode(); //Deal with get failure
+		var jsonResponse = await response.Content.ReadAsStringAsync();
+		return jsonResponse;
 	}
 ```
 * __setUserName()__ - This method should make a PUT/PATCH call to the user database API in order to add a user's name. 
@@ -22,7 +25,15 @@ public string getUserName()
 ```csharp
 public void setUserName()
 	{
-		httpclient.PutAsJsonAsync(userURL + "/" + user.getEmail() + "/username", userNameTextBox.Text);
+		using StringContent jsonContent = new(
+        	JsonSerializer.Serialize(new
+        	{
+            		username = $"{userNameTextBox.Text}"
+        	}),
+        	Encoding.UTF8,
+        	"application/json");
+		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
+		response.EnsureSuccessStatusCode(); //Deal with patch failure
 	}
  ```
 
@@ -32,7 +43,10 @@ public void setUserName()
 ```csharp
 public string getPassword()
 {
-	return httpclient.GetSTringAsync(userURL + "/" + user.getEmail() + "/password";
+	using HttpResponseMessage response= httpclient.GetAsync(userURL + "/" + user.getId() + "/password");
+	response.EnsureSuccessStatusCode(); //Deal with get failure
+	var jsonResponse = await response.Content.ReadAsStringAsync();
+	return jsonResponse;
 }
 ```
 
@@ -43,14 +57,23 @@ public string getPassword()
 public void updatePassword()
 	{
 		byte[] passwordBytes = Encoding.UTF8.GetBytes(previousPasswordTextBox.Text);
-            byte[] passwordHashBytes = SHA256.HashData(passwordBytes);//whatever hasing algorithm is used for the passwords in database
+            	byte[] passwordHashBytes = SHA256.HashData(passwordBytes);//whatever hasing algorithm is used for the passwords in database
 		string textBoxPreviousPassword = BitConverter.ToString(passwordHashBytes)
 		if(user.getPassword() !=  textboxPreviousPassword)
 		{
 			//Warn user wrong Password
 			return;
 		} 
-		httpclient.PutAsJsonAsync(userURL + "/" + user.getEmail() + "/password", textBoxPreviousPassword);
+
+		using StringContent jsonContent = new(
+        	JsonSerializer.Serialize(new
+        	{
+            		password =  $"{textBoxNewPassword.Text}"
+        	}),
+        	Encoding.UTF8,
+        	"application/json");
+		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
+		response.EnsureSuccessStatusCode(); //Deal with patch failure
 	}
  ```
 
@@ -62,9 +85,11 @@ public void updatePassword()
 ```csharp
 public Date getBirthday()
 {
-	string bdayString httpclient.GetStringAsync(userURL + "/" + user.getEmail() + "/birthday";
-	Date birthday = new SimpleDateFormat("dd/MM/yyyy").parse(bdayString);
-	return birthday;
+	using HttpResponseMessage response = httpclient.GetAsync(userURL + "/" + user.getId() + "/birthday");
+	response.EnsureSuccessStatusCode(); //Deal with get failure
+	var jsonResponse = await response.Content.ReadAsStringAsync();
+	Date birthday = new SimpleDateFormat("dd/MM/yyyy").parse(jsonResponse);
+	return jsonResponse;
 }
 ```
 
@@ -74,17 +99,22 @@ public Date getBirthday()
 ```csharp
 public void setBirthday()
 	{
-		if(getBirthday() != NULL)
-		{
-			//Warn user that they can't change birthday once it's set
-			return;
-		}
+
 		if(birthdayDatePicker.Date < Date.Today()) //or any other restrictions the birthday might have(Could be made into a method of it's own)
 		{
 			//Warn user date is not acceptable
 			return;
 		}
-		httpclient.PutAsJsonAsync(userURL + "/" + user.getEmail() + "/birthday", birthdayDatePicker.Date);
+		
+		using StringContent jsonContent = new(
+        	JsonSerializer.Serialize(new
+        	{
+            		birthday =  $"{birthdayDatePicker.Date.toString()}"
+        	}),
+        	Encoding.UTF8,
+        	"application/json");
+		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
+		response.EnsureSuccessStatusCode(); //Deal with patch failure
 	}
 ```
 
@@ -95,7 +125,16 @@ public void setBirthday()
 public void setPhoneNumber()
 	{
 		//validate phone number(Could be made into a method of it's own)
-		httpclient.PutAsJsonAsync(userURL + "/" + user.getEmail() + "/phoneNumber", phoneNumberTextBox.Text);	
+		
+		using StringContent jsonContent = new(
+        	JsonSerializer.Serialize(new
+        	{
+            		phoneNumber =  $"{phoneNumberTextBox.Text}"
+        	}),
+        	Encoding.UTF8,
+        	"application/json");
+		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
+		response.EnsureSuccessStatusCode(); //Deal with patch failure
 	}
 ```
 * __getEmail():string__ - return value in email variable
@@ -104,17 +143,27 @@ public void setPhoneNumber()
 ```csharp
 public void getEmail()
 	{
-		return this.email;
+		using HttpResponseMessage response = httpclient.GetAsync(userURL + "/" + user.getId() + "/email");
+		response.EnsureSuccessStatusCode(); //Deal with get failure
+		var jsonResponse = await response.Content.ReadAsStringAsync();
+		return jsonResponse;
 	}
 ```
 
-* __setEmail(string)__ - Set the user's email variable to the text in the email text box of a successful login attempt
+* __setEmail()__ - Set the user's email variable to the text in the email text box of a successful login attempt
 </br> Ex:
 
 ```csharp
-public void setEmail(string email)
+public void setEmail()
 	{
-		this.email = email;
+		JsonSerializer.Serialize(new
+        	{
+            		email =  $"{emailTextBox.Text}"
+        	}),
+        	Encoding.UTF8,
+        	"application/json");
+		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
+		response.EnsureSuccessStatusCode(); //Deal with patch failure
 	}
 ```
 
@@ -158,42 +207,32 @@ public void setId(int id)
 }
 ```
 
-* __register()__ - This method calls the register method in authentication and setLogged method depending on the value returned
-</br> Ex:
-
-```csharp
-public void register()
-	{
-		Authentication auth = new Authentication();
-		if(auth.register(emailTextBox.Text, passwordTextBox.Text)
-		{
-			setEmail(emailTextBox.Text);
-		}
-		else return;
-	}
-```
 
 ### <p align="center">Authentication</p>
 
-* __login(string, string):bool__ - This method should make a GET call to the user database API in order to check if a user with the given email exists. If an entry for that email does exist, the method should then use the method getPassword() to check the current password from the user database and compare it to the hash of the password written by the user in the password text box. If the passwords match the user's identity is verified and he should be logged in, otherwise they should be denied access to the account
+* __login(string, string):user__ - This method should make a GET call to the user database API in order to check if a user with the given email exists. If an entry for that email does exist, the method should then use the method getPassword() to check the current password from the user database and compare it to the hash of the password written by the user in the password text box. If the passwords match the user's identity is verified and he should be logged in, otherwise they should be denied access to the account
 </br> Ex:
 
 ```csharp
-public static void login(Usar user ,string email, string password)
+public static user login(string email, string password)
 	{
-		if(user.getLogged()) return;
-		
-		string response = httpclient.GetStringAsync(userURL + "?email=" + email);
-		if(response =="404")//We could verify for more status codes, displaying different messages
+		User user = new User();
+	
+		using HttpResponseMessage response = httpclient.GetAsync(userURL + "?email=" + email);
+		if(response.StatusCode == "404")//We could verify for more status codes, displaying different messages
 		{
 			//warn user login failed
 			return false;
 		}
-		JsonNode jsonNode = JsonNode.Parse(response);
+		
+		var jsonResponse = await response.Content.ReadAsStringAsync();		
+		JsonNode jsonNode = JsonNode.Parse(jsonResponse);
 		string apiPassword = jsonNode["password"].ToString();
 		if(apiPassword != password) return; //warn user login failed
 		user.setLogged();
-		user.setId(Convert.ToInt32(jsonNode["id"]));		
+		user.setId(Convert.ToInt32(jsonNode["id"]));	
+		
+		return user;
 	}
 ```
 
@@ -209,6 +248,37 @@ public static void logout(User user)
 	}
 ```
 
-* __register(string, string):bool__ - This method should make a GET call to the user database API in order to check if the email the user is currently attempting to create a new account with is already in use or not. If the email is available, the method should make a POST call to the user database API, in order to create a new user entry with the email and password in question
+* __register(string, string):user__ - This method should make a GET call to the user database API in order to check if the email the user is currently attempting to create a new account with is already in use or not. If the email is available, the method should make a POST call to the user database API, in order to create a new user entry with the email and password in question
+public static user
 
+
+```csharp
+public static user register(string email, string password)
+	{
+		User user = new User();
+	
+		using StringContent jsonContent = new(
+        	JsonSerializer.Serialize(new
+        	{
+            		email = ${email},
+            		password = ${password},
+            		birthday = null,
+            		phoneNumber = null,
+			//Other attributes depending on the database
+        	}),
+        	Encoding.UTF8,
+        	"application/json");
+
+    		using HttpResponseMessage response = await httpClient.PostAsync(userURL, jsonContent);
+    		response.EnsureSuccessStatusCode()//Deal with patch failure
+	
+		using HttpResponseMessage response = httpclient.GetAsync(userURL + "?email=" + email);		
+		var jsonResponse = await response.Content.ReadAsStringAsync();		
+		JsonNode jsonNode = JsonNode.Parse(jsonResponse);
+		user.setId(Convert.ToInt32(jsonNode["id"]));
+		user.setLogged();
+		
+		return user;
+	}
+```
 
