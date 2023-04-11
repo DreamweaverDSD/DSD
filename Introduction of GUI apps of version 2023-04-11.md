@@ -23,8 +23,8 @@ Activities part(Coding by Java), layouts part(Coding by xml), and values part(Co
 </br>
 In this version, we define the rule of name, sort and annotation.</br>
 Below are one example of the rule of using string.</br>
-![2023-04-11-02](https://imgse.com/i/ppOy55T)
+[![ppOy55T.jpg](https://s1.ax1x.com/2023/04/11/ppOy55T.jpg)](https://imgse.com/i/ppOy55T)
 </br>
 For the layout, we use linear method to arrange the textboxes and buttons.</br>
 Below are one example of main layout, and we'll change the color, size and other attributes to make it prettier.
-![2023-04-11-03](https://imgse.com/i/ppOyoPU)
+[![ppOyoPU.jpg](https://s1.ax1x.com/2023/04/11/ppOyoPU.jpg)](https://imgse.com/i/ppOyoPU)
