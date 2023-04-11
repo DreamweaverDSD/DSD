@@ -35,7 +35,8 @@ Week 3:\
 Week4:\
 4.6 confirm with server group\
 4.7 [Second Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)\
-4.9 [Third Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)
+4.9 [Third Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)\
+4.11 [GUI app version 20230411](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)\
 
 
 # The Gantt chart of our group
