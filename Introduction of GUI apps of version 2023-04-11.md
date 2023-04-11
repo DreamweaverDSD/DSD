@@ -19,7 +19,7 @@ Mainly change or contribution on version 2023-04-11
 
 The main part of the whole project consists of 3 parts:</br>
 Activities part(Coding by Java), layouts part(Coding by xml), and values part(Coding by xml).</br>
-![2023-04-11-01](https://imgse.com/i/ppOyTGF)
+[![ppOyTGF.jpg](https://s1.ax1x.com/2023/04/11/ppOyTGF.jpg)](https://imgse.com/i/ppOyTGF)
 </br>
 In this version, we define the rule of name, sort and annotation.</br>
 Below are one example of the rule of using string.</br>
