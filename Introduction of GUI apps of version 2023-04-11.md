@@ -11,7 +11,7 @@ Revision History:
 <table><tbody><tr>
 <td>Date</td><td>Author</td><td>Description</td><td>If it's a release version</td>
 </tr><tr>
-<td>2023.4.11</td><td>JianLin Yu(Durable)</td><td>Draw the main layout, the first layer of layout, and dispatch logic of each button.</td><td>false</td>
+<td>2023.4.11</td><td>JianLin Yu(Durable)</td><td>Draw the main layout, the first layer of layout, make the drafts of other use cases and dispatch logic of each button.</td><td>false</td>
 </tr><tr>
 </tr></tbody></table>
 
