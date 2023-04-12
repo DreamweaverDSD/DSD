@@ -19,11 +19,11 @@ public string getUserName()
 		return jsonResponse;
 	}
 ```
-* __setUserName()__ - This method should make a PUT/PATCH call to the user database API in order to add a user's name. 
+* __setUserName(string)__ - This method should make a PUT/PATCH call to the user database API in order to add a user's name. 
 </br> Ex:
 
 ```csharp
-public void setUserName()
+public void setUserName(strin name)
 	{
 		using StringContent jsonContent = new(
         	JsonSerializer.Serialize(new
@@ -228,7 +228,7 @@ public static User login(string email, string password)
 		var jsonResponse = await response.Content.ReadAsStringAsync();		
 		JsonNode jsonNode = JsonNode.Parse(jsonResponse);
 		string apiPassword = jsonNode["password"].ToString();
-		if(apiPassword != password) return; //warn user login failed
+		if(apiPassword != password) return; //warn user login failed - return NULL
 		user.setLogged();
 		user.setId(Convert.ToInt32(jsonNode["id"]));	
 		
@@ -240,11 +240,12 @@ public static User login(string email, string password)
 </br> Ex:
 
 ```csharp
-public static void logout(User user)
+public static bool logout(User user)
 	{
-		if(!user.getLogged()) return
-		user.setLogged();
+		if(!user.getLogged()) return false
+		user.setLogged(); // if fails return false 
 		setId(0);//Some representation of no user
+		return true
 	}
 ```
 
@@ -270,7 +271,7 @@ public static User register(string email, string password)
         	"application/json");
 
     		using HttpResponseMessage response = await httpClient.PostAsync(userURL, jsonContent);
-    		response.EnsureSuccessStatusCode()//Deal with patch failure
+    		response.EnsureSuccessStatusCode()//Deal with patch failure - return NULL
 	
 		using HttpResponseMessage response = httpclient.GetAsync(userURL + "?email=" + email);		
 		var jsonResponse = await response.Content.ReadAsStringAsync();		
