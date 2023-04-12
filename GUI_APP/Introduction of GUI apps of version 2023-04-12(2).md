@@ -1,10 +1,10 @@
 ---
-title: Introduction of GUI apps of version 2023-04-12
+title: Introduction of GUI apps of version 2023-04-12(2)
 created: '2023-04-11T14:15:03.864Z'
 modified: '2023-04-12T15:35:03.629Z'
 ---
 
-# Introduction of GUI apps of version 2023-04-12
+# Introduction of GUI apps of version 2023-04-12(2)
 
 Revision History:
 
