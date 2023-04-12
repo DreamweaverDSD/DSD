@@ -2,7 +2,7 @@
 # <p align="center" >Class Diagram</p>
 
 ## Diagram
-![Class Diagram](https://i.imgur.com/EXvL04f.png)
+![Class Diagram](https://i.imgur.com/Rq5HSjz.png)
 
 ## Method Explanation
 ### <p align = "center">User</p>
