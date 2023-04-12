@@ -21,8 +21,11 @@ But-0x00 predict user motion button cannot change to next layout</td><td>false</
 </tr></tbody></table>
 
 Mainly change or contribution on version 2023-04-12</br>
-We changed the color and the background of main layout and the first layer layouts.
+We changed the color and the background of main layout and the first layer layouts.</br>
 [![ppOzqlF.jpg](https://s1.ax1x.com/2023/04/12/ppOzqlF.jpg)](https://imgse.com/i/ppOzqlF)
+</br>
 [![ppOzLy4.jpg](https://s1.ax1x.com/2023/04/12/ppOzLy4.jpg)](https://imgse.com/i/ppOzLy4)
+</br>
 [![ppOzbSU.jpg](https://s1.ax1x.com/2023/04/12/ppOzbSU.jpg)](https://imgse.com/i/ppOzbSU)
+</br>
 [![ppOzOOJ.jpg](https://s1.ax1x.com/2023/04/12/ppOzOOJ.jpg)](https://imgse.com/i/ppOzOOJ)
