@@ -28,11 +28,11 @@ But-0x01 The name of string is not correct.</td><td>false</td>
 Mainly change or contribution on version 2023-04-12(2)</br>
 We have finished the layout of connectequip.</br>
 We will use the IP address and port of equipment to make a connection.</br>
-[![ppjtHWn.jpg](https://s1.ax1x.com/2023/04/12/ppjtHWn.jpg)](https://imgse.com/i/ppjtHWn)
+[![ppjtHWn.jpg](https://s1.ax1x.com/2023/04/12/ppjtHWn.jpg)](https://imgse.com/i/ppjtHWn)</br>
 After user input the IP address and port, APP will check if it is a legal IP address, and show successful notion or error message.</br>
-[![ppjayi4.jpg](https://s1.ax1x.com/2023/04/12/ppjayi4.jpg)](https://imgse.com/i/ppjayi4)
+[![ppjayi4.jpg](https://s1.ax1x.com/2023/04/12/ppjayi4.jpg)](https://imgse.com/i/ppjayi4)</br>
 
 Additionally, we made a template of tablelayout.</br>
-[![ppjaHWd.jpg](https://s1.ax1x.com/2023/04/12/ppjaHWd.jpg)](https://imgse.com/i/ppjaHWd)
+[![ppjaHWd.jpg](https://s1.ax1x.com/2023/04/12/ppjaHWd.jpg)](https://imgse.com/i/ppjaHWd)</br>
 It will be shown on app like this:</br>
 [![ppjaLQI.jpg](https://s1.ax1x.com/2023/04/12/ppjaLQI.jpg)](https://imgse.com/i/ppjaLQI)
