@@ -8,7 +8,7 @@
 ### <p align = "center">User</p>
 
 
-* __setUserNameAPI(string)__ : bool - This method should make a PUT/PATCH call to the user database API in order to add a user's name. 
+* __setUserNameAPI(string)__ : bool - This method should make a PUT/PATCH call to the user database API in order to add a user's name. This method takes as parameter a string storing the value the user wrote in the username textbox.
 </br> Ex:
 
 ```csharp
@@ -30,7 +30,7 @@ public bool setUserNameAPI(string name)
 
 
 
-* __updatePassword(string,string)__ : bool- This method is used to update the user's password when they're already logged into their account. The user inserts their previous password, and the password they wish to change it to. This method should make a GET call to get the hash of the current user password, compare it to the hash of the text in the previous user password text box, and if they match it should make a PUT/PATCH call to the user database API changing the previous password to the new one(the hash of the text in the new password text box).
+* __updatePassword(string,string)__ : bool- This method is used to update the user's password when they're already logged into their account. The user inserts their previous password, and the password they wish to change it to. This method should make a GET call to get the hash of the current user password, compare it to the hash of the text in the previous user password text box, and if they match it should make a PUT/PATCH call to the user database API changing the previous password to the new one(the hash of the text in the new password text box). This method takes as parameter two strings, one storing the value the user wrote in the previousePassword textbox, and the other storing the value the user wrote in the newPassword textbox.
 </br> Ex:
 
 ```csharp
@@ -63,7 +63,7 @@ public bool updatePassword(string newPassword,string oldPassword)//newPassword a
 
 
 
-* __setBirthdayAPI(Date)__ : bool - This method should make a PUT/PATCH call to the user database API in order to add a user's birthday.
+* __setBirthdayAPI(Date)__ : bool - This method should make a PUT/PATCH call to the user database API in order to add a user's birthday. This method takes as parameter a Date storing the value the user  inserted as their birthday.
 </br> Ex:
 
 ```csharp
@@ -91,7 +91,7 @@ public bool setBirthdayAPI(Date birthday)
 	}
 ```
 
-* __setPhoneNumber(string)__ : bool- This method should make a PUT/PATCH call to the user database API in order to add a user's phone number.
+* __setPhoneNumber(string)__ : bool- This method should make a PUT/PATCH call to the user database API in order to add a user's phone number. This method takes as parameter a string storing the value the user wrote in the phoneNumber textbox.
 </br> Ex:
 
 ```csharp
@@ -114,7 +114,7 @@ public bool setPhoneNumberAPI(string phonenumber)
 	}
 ```
 
-* __setEmail(string)__ : bool - Set the user's email variable to the text in the email text box of a successful login attempt
+* __setEmail(string)__ : bool - Set the user's email variable to the text in the email text box of a successful login attempt. This method takes as parameter a string storing the value the user wrote in the email textbox
 </br> Ex:
 
 ```csharp
@@ -136,7 +136,7 @@ public bool setEmailAPI(string email)
 
 ### <p align="center">Authentication</p>
 
-* __login(string, string):user__ - This method should make a GET call to the user database API in order to check if a user with the given email exists. If an entry for that email does exist, the method should then use the method getPassword() to check the current password from the user database and compare it to the hash of the password written by the user in the password text box. If the passwords match the user's identity is verified and he should be logged in, otherwise they should be denied access to the account
+* __login(string, string):user__ - This method should make a GET call to the user database API in order to check if a user with the given email exists. If an entry for that email does exist, the method should then use the method getPassword() to check the current password from the user database and compare it to the hash of the password written by the user in the password text box. If the passwords match the user's identity is verified and he should be logged in, otherwise they should be denied access to the account. This method takes as parameter two strings, one storing the value the user wrote in the email textbox in the login view, and the other one storing the value they wrote in the password textbox in the login view.
 </br> Ex:
 
 ```csharp
@@ -154,7 +154,7 @@ public static User login(string email, string password)
 		
 		var jsonResponse = await response.Content.ReadAsStringAsync();		
 		JsonNode jsonNode = JsonNode.Parse(jsonResponse);
-		//string apiPassword = jsonNode["password"].ToString();
+		string apiPassword = jsonNode["password"].ToString();
 		if(apiPassword != password) return null; //warn user login failed - return NULL
 		user.setLogged();
 		user.setId(Convert.ToInt32(jsonNode["id"]));
@@ -171,7 +171,7 @@ public static User login(string email, string password)
 	}
 ```
 
-* __logout(User)__ : bool - This method is called when the user wishes to logout of their account, changing the user's bool variable Logged to false
+* __logout(User)__ : bool - This method is called when the user wishes to logout of their account, changing the user's bool variable Logged to false. This method takes as parameter a User, representing the user currently calling the method.
 </br> Ex:
 
 ```csharp
@@ -191,8 +191,8 @@ public static bool logout(User user)
 	}
 ```
 
-* __register(string, string):user__ - This method should make a GET call to the user database API in order to check if the email the user is currently attempting to create a new account with is already in use or not. If the email is available, the method should make a POST call to the user database API, in order to create a new user entry with the email and password in question
-public static user
+* __register(string, string):user__ - This method should make a GET call to the user database API in order to check if the email the user is currently attempting to create a new account with is already in use or not. If the email is available, the method should make a POST call to the user database API, in order to create a new user entry with the email and password in question. This method takes as parameter two strings, one storing the value the user wrote in the email textbox, and the other one storing what they wrote in the password textbox in the register view.
+
 </br> Ex:
 
 ```csharp
@@ -217,7 +217,7 @@ public static User register(string email, string password)
 
 ### <p align="center">DataManagement</p>
 
-* __getData(int):List<Data>__ - This method should make a GET call to the data database API and generate a List of Data objects returning it.
+* __getData(int):List<Data>__ - This method is used to retrieve, from the data database, the data collected by the user currently calling the method. This method should make a GET call to the data database API and generate a List of Data objects, returning it. This method takes as a parameter the id of the user currently calling the method.
 </br> Ex:
 
 ```csharp
@@ -271,15 +271,65 @@ return null;
 
 ```
 
-* __DiscardData(int):bool__ - This method should make a DELETE call to the data database API and return a status code.
+* __DiscardData(int):bool__ - This method should delete the data stored in the data database associated with the user currently calling the method. It makes a delete call to the data database API. This method should make a DELETE call to the data database API and return a status code. 
 </br> Ex:
 
 ```csharp
 
-public static bool DiscardData(/*int id do user para buscar a data toda dele?*/){
+public static bool DiscardData(int userId){
 	//the data linked to the user id will be deleted
-	HttpResponse response = await client.DeleteAsync(apiUrl+id);
+	HttpResponse response = await client.DeleteAsync(dataUrl + "/" + userId);
 	return response.IsSuccessStatusCode;
+	
+}
+
+```
+
+
+* __ChangeLabel(string)__ - !!CONFUSED!!
+
+
+### <p align="center">PredictionModel</p>
+
+* __PredictUserMotion(int):string - This method should retrieve for the user, the prediction the prediction model is capable of generating based on previous user data stored in the data database. This method should take the as a parameter an int representing the id of the user currently calling the method, and should make a GET call to return the predicion the prediction model makes for this specific user. Before making this call we should make sure the user has data (enough) associated with it's id for the predicion model to base it's prediction on.
+</br> Ex:
+
+```csharp
+
+public static string ConnectEquipment(int userId){
+
+	//Verify if user has data to base prediction on
+	
+	HttpResponse response = await client.getAsync(predictURL + "/" + userId);
+	if(response.StatusCode == "404") return null; //Deal with other possible status codes
+	
+	var jsonResponse = await response.Content.ReadAsStringAsync();		
+	JsonNode jsonNode = JsonNode.Parse(jsonResponse);
+	
+	return jsonNode["prediction"].ToString();
+	
+}
+```
+
+* __ResetModel(int):bool__ - !!CONFUSED!!
+</br> Ex:
+
+```csharp
+
+public static bool ResetModel(int userId){
+	
+}
+```
+
+### <p align="center">Equipment</p>
+
+* __ConnectEquipment(int):bool__ - !!CONFUSED!!
+</br> Ex:
+
+```csharp
+
+public static bool ConnectEquipment(int userId){
+
 	
 }
 
