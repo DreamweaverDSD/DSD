@@ -41,7 +41,7 @@ Week 4:\
 4.12 [GUI APP version 20230412(2)](https://github.com/DreamweaverDSD/DSD/blob/main/GUI_APP/Introduction%20of%20GUI%20apps%20of%20version%202023-04-12(2).md)
 
 Week 5:\
-4.15 Discuss about the connection of equipment and the process of getting data in the group meeting.
+4.15 In the group meeting, we discuss about the connection of equipment and the process of getting data in system architecture.
 
 # The Gantt chart of our group
 ```mermaid
