@@ -2,7 +2,7 @@
 # <p align="center" >Class Diagram</p>
 
 ## Diagram
-![Class Diagram](https://i.imgur.com/PvSzrMo.png)
+![Class Diagram](https://i.imgur.com/qNM8HmC.png)
 
 ## Method Explanation
 ### <p align = "center">User</p>
@@ -221,7 +221,7 @@ public static User register(string email, string password)
 </br> Ex:
 
 ```csharp
-public static List<Data> GetData(int id)//user id or what may be necessary to identify the data
+public static List<Data> getData(int id)//user id or what may be necessary to identify the data
 {
 	HttpResponse response = await client.getAsync(dataURL+'/'+id);
 	
@@ -271,12 +271,12 @@ return null;
 
 ```
 
-* __DiscardData(int):bool__ - This method should delete the data stored in the data database associated with the user currently calling the method. It makes a delete call to the data database API. This method should make a DELETE call to the data database API and return a status code. 
+* __discardData(int):bool__ - This method should delete the data stored in the data database associated with the user currently calling the method. It makes a delete call to the data database API. This method should make a DELETE call to the data database API and return a status code. 
 </br> Ex:
 
 ```csharp
 
-public static bool DiscardData(int userId){
+public static bool discardData(int userId){
 	//the data linked to the user id will be deleted
 	HttpResponse response = await client.DeleteAsync(dataUrl + "/" + userId);
 	return response.IsSuccessStatusCode;
@@ -291,12 +291,12 @@ public static bool DiscardData(int userId){
 
 ### <p align="center">PredictionModel</p>
 
-* __PredictUserMotion(int):string - This method should retrieve for the user, the prediction the prediction model is capable of generating based on previous user data stored in the data database. This method should take the as a parameter an int representing the id of the user currently calling the method, and should make a GET call to return the predicion the prediction model makes for this specific user. Before making this call we should make sure the user has data (enough) associated with it's id for the predicion model to base it's prediction on.
+* __predictUserMotion(int):string - This method should retrieve for the user, the prediction the prediction model is capable of generating based on previous user data stored in the data database. This method should take the as a parameter an int representing the id of the user currently calling the method, and should make a GET call to return the predicion the prediction model makes for this specific user. Before making this call we should make sure the user has data (enough) associated with it's id for the predicion model to base it's prediction on.
 </br> Ex:
 
 ```csharp
 
-public static string ConnectEquipment(int userId){
+public static string connectEquipment(int userId){
 
 	//Verify if user has data to base prediction on
 	
@@ -311,31 +311,126 @@ public static string ConnectEquipment(int userId){
 }
 ```
 
-* __ResetModel(int):bool__ - !!CONFUSED!!
+* __resetModel(int):bool__ - !!CONFUSED!!
 </br> Ex:
 
 ```csharp
 
-public static bool ResetModel(int userId){
+public static bool resetModel(int userId){
 	
 }
 ```
 
 ### <p align="center">Equipment</p>
 
-* __ConnectEquipment(int):bool__ - !!CONFUSED!!
+* __connectEquipment(int,string):bool__ - This method is supposed to allow the user currently calling it to connect to the sensors. With a limited number of equipment available the we must make an API posr request sending the user's Id and the type of data they are planning of collecting. If the equipment is availbale our user should be able to connect to it, otherwise they should be warned of it's unavailability. This method takes an int and a string as parameters, with the integer representing the id of the user currently calling the method, and the string representing the type of movement the user plans to collect data for.
 </br> Ex:
 
 ```csharp
 
-public static bool ConnectEquipment(int userId){
-
+public static bool connectEquipment(int userId, string movementType){
+	using StringContent jsonContent = new(
+        	JsonSerializer.Serialize(new
+        	{
+            		userID = $"{userId}",
+			movementType = $"{movementType}"
+        	}),
+        	Encoding.UTF8,
+        	"application/json");
+		
+	HttpResponseMessage response = await client.PostAsync(sensorsURL + "/connect" , jsonContent);
 	
+	return response.IsSuccessStatusCode //Deal with the possibility of failure to connect
 }
 
 ```
 
+* __disconnectEquipment():bool__ - This method is supposed to allow the user currently calling it to disconnect from the sensors. This method should either only be allowed to be called by a user that successfully connected to the equipment (it was available and there were no errors on either the user or server end when performing the connection), or the user should be informed, when trying to call this method, that they need to connect to the equipment first. T
+</br> Ex:
+
+```csharp
+
+public static bool disconnectEquipment(){
+		
+	HttpResponseMessage response = await client.DeleteAsync(sensorsURL + "/connect");
+	
+	return response.IsSuccessStatusCode //Deal with the possibility of failure to connect
+}
+
+```
+
+* __collectData(int):bool__ - This method should warn the server that the user that last connected wants to start collecting data for the movement type they specified on connection. The method should send the id of the user currently calling it, and a "start" so that data collection can begin. This method should either only be allowed to be called by a user that successfully connected to the equipment (it was available and there were no errors on either the user or server end when performing the connection), or the user should be informed, when trying to call this method, that they need to connect to the equipment first. This method takes as parameter and integer representing the id of the user currently calling the method.
+</br> Ex:
+
+```csharp
+
+public static bool collectData(int userId){
+	
+	using StringContent jsonContent = new(
+        	JsonSerializer.Serialize(new
+        	{
+            		userID = $"{userId}",
+			action = "start"
+        	}),
+        	Encoding.UTF8,
+        	"application/json");
+		
+	HttpResponseMessage response = await client.PostAsync(sensorsURL + "/collect" , jsonContent);
+	
+	return response.IsSuccessStatusCode //Deal with the possibility of failure to connect	
+}
+```
 
 
 
+* __collectDataStop(int):bool__ - This method should warn the server that the user that last connected wants to stop collecting data for the movement type they specified on connection. The method should send the id of the user currently calling it, and an "end" so that data collection can stop. This method should either only be allowed to be called by a user that successfully connected to the equipment (it was available and there were no errors on either the user or server end when performing the connection) and is currently collecting data, or the user should be informed, when trying to call this method, that they need to start collecting data before they can stop data collection. This method takes as parameter an integer representing the id of the user currently calling the method.
+</br> Ex:
 
+```csharp
+
+public static bool collectDataStop(int userId){
+	
+/*	using StringContent jsonContent = new(
+        	JsonSerializer.Serialize(new
+        	{
+            		userID = $"{userId}",
+			action = "stop"
+        	}),
+        	Encoding.UTF8,
+        	"application/json");
+		
+	HttpResponseMessage response = await client.PostAsync(sensorsURL + "/collect", jsonContent);*/
+	
+	HttpResponseMessage response = await client.DeleteAsync(sensorsURL + "/collect");
+		
+	return response.IsSuccessStatusCode //Deal with the possibility of failure to connect	
+}
+```
+
+
+* __getEquipmentStatus():string__ - This method should retrieve the status of the sensors. The method makes a get call to the sensor API, receiving a JsonArray with each entry representing a sensor. The method then parses the array, retreiving the status of each sensor and creating a string that is then returned.
+</br> Ex:
+
+```csharp
+
+public static string getEquipmentStatus(){
+	
+	HttpResponse response = await client.getAsync(sensorURL);
+	
+	
+	if(response.IsSuccessStatusCode){
+		string response = await response.Content.ReadAsStringAsync();
+
+		JsonArray sensorArray = JsonSerializer.Deserialize<JsonArray>(response);
+		string status="";
+		
+		foreach (JsonNode sensor in sensorArray.AsArray())
+    		{
+        		status += $"\nSensor {sensor["sensorId"]}: {sensor["status"]}";
+        	}
+		
+		return status;
+    	}
+    	return null; //warn user of failure
+}
+```
