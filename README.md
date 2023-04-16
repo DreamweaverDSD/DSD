@@ -32,13 +32,16 @@ Week 3:\
 4.1 Decide to start the system architecture\
 4.4 [First Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)
 
-Week4:\
+Week 4:\
 4.6 confirm with server group\
 4.7 [Second Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)\
 4.9 [Third Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)\
 4.11 [GUI APP version 20230411](https://github.com/DreamweaverDSD/DSD/blob/main/GUI_APP/Introduction%20of%20GUI%20apps%20of%20version%202023-04-11.md)\
 4.12 [GUI APP version 20230412](https://github.com/DreamweaverDSD/DSD/blob/main/GUI_APP/Introduction%20of%20GUI%20apps%20of%20version%202023-04-12.md)\
 4.12 [GUI APP version 20230412(2)](https://github.com/DreamweaverDSD/DSD/blob/main/GUI_APP/Introduction%20of%20GUI%20apps%20of%20version%202023-04-12(2).md)
+
+Week 5:\
+4.15 Discuss about the connection of equipment and the process of getting data in the group meeting.
 
 # The Gantt chart of our group
 ```mermaid
