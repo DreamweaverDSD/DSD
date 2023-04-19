@@ -160,8 +160,8 @@ public static User login(string email, string password)
 		user.setId(Convert.ToInt32(jsonNode["id"]));
 		user.setEmail(jsonNode["email"]);
 		user.setPassword(jsonNode["password"]);
-		user.setEmail(Convert.ToInt32(jsonNode["phoneNumber"]));
-		user.setuserName(jsonNode["userName"]);
+		user.setPhoneNumber(Convert.ToInt32(jsonNode["phoneNumber"]));
+		user.setUserName(jsonNode["userName"]);
 		string birthday=jsonNode["birthday"];//verify if is null
 		user.setBirthday(SimpleDateFormat("dd/MM/yyyy").parse(birthday););
 		
@@ -178,14 +178,15 @@ public static User login(string email, string password)
 public static bool logout(User user)
 	{
 		if(!user.getLogged()) return false
-		user.setLogged(); // if fails return false 
+		/*user.setLogged(); // if fails return false 
 		user.setId(0);//Some representation of no user
 		user.setEmail(NULL);
 		user.setPassword(NULL);
 		user.setEmail(NULL);
 		user.setuserName(NULL);
-		user.setBirthday(NULL);
+		user.setBirthday(NULL);*/
 		
+		//Delete user
 		
 		return true
 	}
@@ -217,55 +218,52 @@ public static User register(string email, string password)
 
 ### <p align="center">DataManagement</p>
 
-* __getData(int):List<Data>__ - This method is used to retrieve, from the data database, the data collected by the user currently calling the method. This method should make a GET call to the data database API and generate a List of Data objects, returning it. This method takes as a parameter the id of the user currently calling the method.
+* __getData(int, Motion motion):void__ - This method is used to retrieve, from the data database, the data collected by the user currently calling the method. This method should make a GET call to the data database API and generate a List of Data objects, returning it. This method takes as a parameter the id of the user currently calling the method.
 </br> Ex:
 
 ```csharp
-public static List<Data> getData(int id)//user id or what may be necessary to identify the data
+public void getData(int id, Motion motion)//user id or what may be necessary to identify the data
 {
-	HttpResponse response = await client.getAsync(dataURL+'/'+id);
+	HttpResponse response = await client.getAsync(dataURL+'/'+ id );
 	
 	
 	if(response.IsSuccessStatusCode){
-	string json = await response.Content.ReadAsStringAsync();
+		string json = await response.Content.ReadAsStringAsync();
 
-    List<Data> dataList = new List<Data>();
+    		JArray sensorDataArray = JsonConvert.DeserializeObject<JArray>(json);
+	
+    		foreach (JObject sensorData in sensorDataArray)
+    			{
+        			double timestamp = sensorData["timestamp"].Value<double>();
 
-    JArray sensorDataArray = JsonConvert.DeserializeObject<JArray>(json);
+        			foreach (var sensor in sensorData)
+        			{
+            				if (sensor.Key == "timestamp")
+                			continue;
 
-    foreach (JObject sensorData in sensorDataArray)
-    {
-        double timestamp = sensorData["timestamp"].Value<double>();
+            				JObject sensorValues = sensor.Value.Value<JObject>();
 
-        foreach (var sensor in sensorData)
-        {
-            if (sensor.Key == "timestamp")
-                continue;
+            				Data data = new Data
+            				{
+                				SensorId = sensor.Key,
+                				X = sensorValues["X"].Value<double>(),
+                				Y = sensorValues["Y"].Value<double>(),
+                				Z = sensorValues["Z"].Value<double>(),
+                				AccX = sensorValues["accX"].Value<double>(),
+                				AccY = sensorValues["accY"].Value<double>(),
+                				AccZ = sensorValues["accZ"].Value<double>(),
+                				AsX = sensorValues["asX"].Value<double>(),
+                				AsY = sensorValues["asY"].Value<double>(),
+                				AsZ = sensorValues["asZ"].Value<double>(),
+                				Timestamp = timestamp
+            				};
 
-            JObject sensorValues = sensor.Value.Value<JObject>();
-
-            Data data = new Data
-            {
-                SensorId = sensor.Key,
-                X = sensorValues["X"].Value<double>(),
-                Y = sensorValues["Y"].Value<double>(),
-                Z = sensorValues["Z"].Value<double>(),
-                AccX = sensorValues["accX"].Value<double>(),
-                AccY = sensorValues["accY"].Value<double>(),
-                AccZ = sensorValues["accZ"].Value<double>(),
-                AsX = sensorValues["asX"].Value<double>(),
-                AsY = sensorValues["asY"].Value<double>(),
-                AsZ = sensorValues["asZ"].Value<double>(),
-                Timestamp = timestamp
-            };
-
-            dataList.Add(data);
-        }
-    }
-
-    return dataList;
-}
-return null;
+            			dataList.Add(data);
+        			}
+    		}
+    		return dataList;
+	}
+	return null;
 }
 
 
@@ -276,11 +274,10 @@ return null;
 
 ```csharp
 
-public static bool discardData(int userId){
+public bool discardData(int userId){
 	//the data linked to the user id will be deleted
 	HttpResponse response = await client.DeleteAsync(dataUrl + "/" + userId);
 	return response.IsSuccessStatusCode;
-	
 }
 
 ```
@@ -291,12 +288,12 @@ public static bool discardData(int userId){
 
 ### <p align="center">PredictionModel</p>
 
-* __predictUserMotion(int):string - This method should retrieve for the user, the prediction the prediction model is capable of generating based on previous user data stored in the data database. This method should take the as a parameter an int representing the id of the user currently calling the method, and should make a GET call to return the predicion the prediction model makes for this specific user. Before making this call we should make sure the user has data (enough) associated with it's id for the predicion model to base it's prediction on.
+* __predictUserMotion(int):string - This method should retrieve for the user, the prediction the prediction model is capable of generating based on previous user data stored in the data database. This method should take the as a parameter an int representing the id of the user currently calling the method, and should make a GET call to return the prediction the prediction model makes for this specific user.
 </br> Ex:
 
 ```csharp
 
-public static string connectEquipment(int userId){
+public string predictUserMotion(int userId){
 
 	//Verify if user has data to base prediction on
 	
@@ -311,13 +308,15 @@ public static string connectEquipment(int userId){
 }
 ```
 
-* __resetModel(int):bool__ - !!CONFUSED!!
+* __resetModel(int):bool__ - This method should allow the user to reset their personal predition model. This method should either only be allowed to be called by a user that as collected enough data to have their own prediction model (instead of the general prediction model available to all users), or the user should be informed, when trying to call this method, that they don't have a prediction model to reset.
 </br> Ex:
 
 ```csharp
 
-public static bool resetModel(int userId){
-	
+public bool resetModel(int userId){
+	HttpResponse response = await client.getAsync(predictURL + "/" + userId + "/reset");
+	if(response.StatusCode == "404") return false; //Deal with other possible status codes
+	return true;
 }
 ```
 
@@ -328,7 +327,7 @@ public static bool resetModel(int userId){
 
 ```csharp
 
-public static bool connectEquipment(int userId, string movementType){
+public bool connectEquipment(int userId, string movementType){
 	using StringContent jsonContent = new(
         	JsonSerializer.Serialize(new
         	{
@@ -350,7 +349,7 @@ public static bool connectEquipment(int userId, string movementType){
 
 ```csharp
 
-public static bool disconnectEquipment(){
+public bool disconnectEquipment(){
 		
 	HttpResponseMessage response = await client.DeleteAsync(sensorsURL + "/connect");
 	
@@ -364,18 +363,24 @@ public static bool disconnectEquipment(){
 
 ```csharp
 
-public static bool collectData(int userId){
+public bool collectData(int userId){
 	
 	using StringContent jsonContent = new(
         	JsonSerializer.Serialize(new
         	{
             		userID = $"{userId}",
-			action = "start"
         	}),
         	Encoding.UTF8,
         	"application/json");
 		
-	HttpResponseMessage response = await client.PostAsync(sensorsURL + "/collect" , jsonContent);
+	HttpResponseMessage response = await client.PostAsync(sensorsURL + "/collect/start" , jsonContent);
+	
+	
+	while(collecting)
+	{
+		sleep(3000);
+		chart.add(getData());
+	}
 	
 	return response.IsSuccessStatusCode //Deal with the possibility of failure to connect	
 }
@@ -388,21 +393,18 @@ public static bool collectData(int userId){
 
 ```csharp
 
-public static bool collectDataStop(int userId){
+public bool collectDataStop(int userId){
 	
-/*	using StringContent jsonContent = new(
+using StringContent jsonContent = new(
         	JsonSerializer.Serialize(new
         	{
             		userID = $"{userId}",
-			action = "stop"
         	}),
         	Encoding.UTF8,
         	"application/json");
 		
-	HttpResponseMessage response = await client.PostAsync(sensorsURL + "/collect", jsonContent);*/
-	
-	HttpResponseMessage response = await client.DeleteAsync(sensorsURL + "/collect");
-		
+	HttpResponseMessage response = await client.PostAsync(sensorsURL + "/collect/stop", jsonContent);	
+	collecting=false;
 	return response.IsSuccessStatusCode //Deal with the possibility of failure to connect	
 }
 ```
@@ -413,7 +415,7 @@ public static bool collectDataStop(int userId){
 
 ```csharp
 
-public static string getEquipmentStatus(){
+public string getEquipmentStatus(){
 	
 	HttpResponse response = await client.getAsync(sensorURL);
 	
@@ -430,6 +432,33 @@ public static string getEquipmentStatus(){
         	}
 		
 		return status;
+    	}
+    	return null; //warn user of failure
+}
+```
+
+* __getEquipmentInfo():string__ - This method should retrieve information about the sensors. The method makes a get call to the sensor API, receiving a JsonArray with each entry representing a sensor. The method then parses the array, retreiving the all the relevant information of each senso, creating a string of information that is then returned and can be presented.
+</br> Ex:
+
+```csharp
+
+public string getEquipmentStatus(){
+	
+	HttpResponse response = await client.getAsync(sensorURL);
+	
+	
+	if(response.IsSuccessStatusCode){
+		string response = await response.Content.ReadAsStringAsync();
+
+		JsonArray sensorArray = JsonSerializer.Deserialize<JsonArray>(response);
+		string info="";
+		
+		foreach (JsonNode sensor in sensorArray.AsArray())
+    		{
+        		info += $"\nSensor {sensor["sensorId"]}: {sensor[" "]} ; {sensor[" "]}; {sensor[" "]}"; //repeat for all sensor info to present
+        	}
+		
+		return info;
     	}
     	return null; //warn user of failure
 }
