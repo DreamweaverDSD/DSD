@@ -2,7 +2,7 @@
 # <p align="center" >Class Diagram</p>
 
 ## Diagram
-![Class Diagram](https://i.imgur.com/qNM8HmC.png)
+![Class Diagram](https://i.imgur.com/XgE6YUW.png)
 
 ## Method Explanation
 ### <p align = "center">User</p>
@@ -218,11 +218,11 @@ public static User register(string email, string password)
 
 ### <p align="center">DataManagement</p>
 
-* __getData(int, Motion motion):void__ - This method is used to retrieve, from the data database, the data collected by the user currently calling the method. This method should make a GET call to the data database API and generate a List of Data objects, returning it. This method takes as a parameter the id of the user currently calling the method.
+* __getData(int, Motion motion):bool__ - This method is used to retrieve, from the data database, the data collected by the user currently calling the method. This method should make a GET call to the data database API and generate a List of Data objects, returning it. This method takes as a parameter the id of the user currently calling the method.
 </br> Ex:
 
 ```csharp
-public void getData(int id, Motion motion)//user id or what may be necessary to identify the data
+public bool getData(int id, Motion motion)//user id or what may be necessary to identify the data
 {
 	HttpResponse response = await client.getAsync(dataURL+'/'+ id );
 	
@@ -234,7 +234,9 @@ public void getData(int id, Motion motion)//user id or what may be necessary to 
 	
     		foreach (JObject sensorData in sensorDataArray)
     			{
-        			double timestamp = sensorData["timestamp"].Value<double>();
+				store each entry of the data returned by the API in Motion Records
+				
+        			/*double timestamp = sensorData["timestamp"].Value<double>();
 
         			foreach (var sensor in sensorData)
         			{
@@ -259,11 +261,13 @@ public void getData(int id, Motion motion)//user id or what may be necessary to 
             				};
 
             			dataList.Add(data);
-        			}
+        			}*/
     		}
-    		return dataList;
+    		//return dataList;
+		return true
 	}
-	return null;
+	//return null;
+	return false;
 }
 
 
@@ -375,12 +379,7 @@ public bool collectData(int userId){
 		
 	HttpResponseMessage response = await client.PostAsync(sensorsURL + "/collect/start" , jsonContent);
 	
-	
-	while(collecting)
-	{
-		sleep(3000);
-		chart.add(getData());
-	}
+	//Receive real time data returned by server
 	
 	return response.IsSuccessStatusCode //Deal with the possibility of failure to connect	
 }
