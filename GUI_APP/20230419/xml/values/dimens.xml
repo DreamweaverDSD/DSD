@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    The value of length and width should use dp.
+    The Size of text should use sp.
+    -->
+    <!--
+    Below are margin of main textview and buttons.
+    -->
+    <dimen name = "margin_between_top_and_second">20dp</dimen>
+    <dimen name = "margin_between_two_button">10dp</dimen>
+    <dimen name = "margin_against_left">20dp</dimen>
+    <dimen name = "margin_against_right">20dp</dimen>
+    <dimen name = "margin_between_left_and_right">5dp</dimen>
+    <!--
+    Below are size of components.
+    -->
+    <dimen name = "size_of_top_textview">50dp</dimen>
+    <dimen name = "size_of_button">30dp</dimen>
+    <dimen name = "size_of_others">20dp</dimen>
+    <dimen name = "size_of_edittext">50dp</dimen>
+    <dimen name = "size_of_tablelistleftname">200dp</dimen>
+    <!--
+    Below are the size of text in components.
+    -->
+    <dimen name = "text_of_top_textview">40sp</dimen>
+    <dimen name = "text_of_second_textview">30sp</dimen>
+    <dimen name = "text_of_button">25sp</dimen>
+    <dimen name = "text_of_notion">20sp</dimen>
+    <dimen name = "text_of_others">15sp</dimen>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    Below are base colors.
+    -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#FFFF0000</color>
+    <color name="green">#FF00FF00</color>
+    <color name="yellow">#FFFFFF00</color>
+    <!--
+    Below are colors used by special buttons.
+    We strongly suggest to use near colors on one sub module.
+    -->
+    <color name="Button_Data">#FF556B2F</color>
+    <color name="Button_Equipments">#FF800080</color>
+    <color name="Button_Model">#FF00BFFF</color>
+    <color name="Button_UserInfo">#FFFFC0CB</color>
+    <color name="Button_GetUserGuide">#FFFFA500</color>
+    <color name="Table">#FFF5DEB3</color>
+    <!--
+    Below are colors used on Model sub part.
+    They are all in dark blue series.
+    -->
+    <color name="Button_ResetModel">#FF4682B4</color>
+    <color name="Button_ShowModelInfo">#FF6495ED</color>
+    <color name="Button_PredUserMotion">#FF1E90FF</color>
+    <!--
+    Below are colors used on Data sub part.
+    They are all in green series.
+    -->
+    <color name="Button_GetDataList">#FF006400</color>
+    <color name="Button_DiscardData">#FF008000</color>
+    <color name="Button_ChangeDataLabel">#FF228B22</color>
+    <!--
+    Below are colors used on Equipments sub part.
+    They are all in purple series.
+    -->
+    <color name="Button_ConnectEquip">#FF9370DB</color>
+    <color name="Button_GetEquipInfo">#FF8B008B</color>
+    <color name="Button_GetEquipStatus">#FF9400D3</color>
+    <color name="Button_CollectData">#FF9932CC</color>
+    <color name="Button_UnbindEquip">#FFBA55D3</color>
+    <!--
+    Below are colors used on background.
+    -->
+    <color name="Background_changedatalabel">#FFFFFFFF</color>
+</resources>

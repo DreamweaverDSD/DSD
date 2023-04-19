@@ -1,0 +1,149 @@
+<resources>
+    <string name = "app_name">DSD_Android</string>
+    <!--
+    Below are context of textbox and buttons.
+    They are sorted from top to below.
+    The name of string should be named by
+        (Type Of Components)_(Name of Layout File)_(Name of Components).
+    The first letter of TypeOfComponents should use its uppercase.
+    Due to uppercase cannot appear in file name in layout, the first letter of NameofLayoutFlie
+        don't use its uppercase.
+    The first letter of all words in NameofComponents should use its uppercase.
+    For example,
+        Text_main_name
+    means the string will be used to be the context of a textbox in activity_main.xml,
+    and the textbox will show the name of the form.
+    -->
+    <!--
+    Below are strings used on activity_main.xml.
+    -->
+    <string name = "Text_main_Name">DSD Android APP</string>
+    <string name = "Button_main_Data">Data</string>
+    <string name = "Button_main_Model">Model</string>
+    <string name = "Button_main_GetUserGuide">User Guide</string>
+    <string name = "Button_main_UserInfo">User Information</string>
+    <string name = "Button_main_Equipments">Equipment</string>
+    <string name = "Text_main_Copyright">By DreamWeaver Group \n version minus 1.0 \n 2023.04</string>
+    <!--
+    Below are strings used on activity_equipments.xml.
+    -->
+    <string name = "Text_equipments_Name">Equipments</string>
+    <string name = "Button_equipments_ConnectEquip">Bind a equipment</string>
+    <string name = "Button_equipments_GetEquipInfo">Get equipment information</string>
+    <string name = "Button_equipments_GetEquipStatus">Get equipment status</string>
+    <string name = "Button_equipments_CollectData">Collect Data</string>
+    <string name = "Button_equipments_UnbindEquip">Unbind the Equipment</string>
+    <string name = "Button_equipments_BackToMain">Back to main menu</string>
+    <!--
+    Below are strings used on activity_data.xml.
+    -->
+    <string name = "Text_data_Name">Data management</string>
+    <string name = "Button_data_GetDataList">Get data list</string>
+    <string name = "Button_data_DiscardData">Discard data</string>
+    <string name = "Button_data_ChangeDataLabel">Change the label of data</string>
+    <string name = "Button_data_BackToMain">Back to main menu</string>
+    <!--
+    Below are strings used on activity_model.xml.
+    -->
+    <string name = "Text_model_Name">Model and Predict</string>
+    <string name = "Button_model_ShowModelInfo">Show the information of model</string>
+    <string name = "Button_model_ResetModel">Reset model</string>
+    <string name = "Button_model_PredUserMotion">Predict User motion</string>
+    <string name = "Button_model_BackToMain">Back to main menu</string>
+    <!--
+    Below are strings used on activity_userinfo.xml.
+    -->
+    <string name = "Button_userinfo_BackToMain">Back to main menu</string>
+    <!--
+    Below are strings used on activity_getuserguide.xml.
+    -->
+    <string name = "Button_getuserguide_BackToMain">Back to main menu</string>
+    <!--
+    Below are strings used on activity_getdatalist.xml.
+    -->
+    <string name = "Button_getdatalist_BackToData">Back</string>
+    <string name = "Text_getdatalist_Name">Data List</string>
+    <!--
+    Below are strings used on activity_discarddata.xml.
+    -->
+    <string name = "Text_discarddata_Name">Discard Data</string>
+    <string name = "Text_discarddata_Dialog">Are you sure you want to discard data number </string>
+    <string name = "Button_discarddata_BackToData">Back</string>
+    <string name = "Dialog_discarddata_true">Submit</string>
+    <string name = "Dialog_discarddata_false">Cancel</string>
+    <!--
+    Below are strings used on activity_changedatalabel.xml.
+    -->
+    <string name = "Text_changedatalabel_Name">Change the label of data</string>
+    <string name = "Text_changedatalabel_Dialog">Choose type you want to change and submit</string>
+    <string name = "Button_changedatalabel_BackToData">Back</string>
+    <!--
+    Below are strings used on activity_resetmodel.xml.
+    -->
+    <string name = "Button_resetmodel_BackToModel">Back</string>
+    <!--
+    Below are strings used on activity_showmodelinfo.xml.
+    -->
+    <string name = "Text_showmodelinfo_Name">Model information</string>
+    <string name = "Text_showmodelinfo_info1_left">Model type</string>
+    <string name = "Text_showmodelinfo_wait_right">searching...</string>
+    <string name = "Button_showmodelinfo_BackToModel">Back</string>
+    <!--
+    Below are strings used on activity_predusermotion.xml.
+    -->
+    <string name = "Button_predusermotion_BackToModel">Back</string>
+    <!--
+    Below are strings used on activity_connectequip.xml.
+    -->
+    <string name = "Button_connectequip_BackToEquip">Back</string>
+    <string name = "Button_connectequip_Connect">Connect</string>
+    <string name = "Text_connectequip_Name">Connect to Equipment</string>
+    <string name = "Text_connectequip_InputIP">Please input the IP address:</string>
+    <string name = "Text_connectequip_InputPort">Please input the Port:</string>
+    <!--
+    Below are strings used on activity_getequipinfo.xml.
+    -->
+    <string name = "Button_getequipinfo_BackToEquip">Back</string>
+    <string name = "Text_getequipinfo_Name">Get equipment information</string>
+    <string name = "Text_getequipinfo_info1_left">Type of equipment</string>
+    <string name = "Text_getequipinfo_info2_left">Type of sensors</string>
+    <string name = "Text_getequipinfo_info3_left">The number of equipment</string>
+    <string name = "Text_getequipinfo_info4_left">The number of sensors</string>
+    <string name = "Text_getequipinfo_info5_left">The date of production</string>
+    <string name = "Text_getequipinfo_info6_left">IP of equipment</string>
+    <string name = "Text_getequipinfo_info7_left">Port of equipment</string>
+    <string name = "Text_getequipinfo_wait_right">Wait a moment. Soon...</string>
+    <!--
+    Below are strings used on activity_getequipstatus.xml.
+    -->
+    <string name = "Button_getequipstatus_BackToEquip">Back</string>
+    <string name = "Text_getequipstatus_Name">Get equipment status</string>
+    <string name = "Text_getequipstatus_status1_left">Type of equipment</string>
+    <string name = "Text_getequipstatus_status2_left">Type of sensors</string>
+    <string name = "Text_getequipstatus_status3_left">The number of equipment</string>
+    <string name = "Text_getequipstatus_status4_left">The number of sensors</string>
+    <string name = "Text_getequipstatus_status5_left">The date of production</string>
+    <string name = "Text_getequipstatus_status6_left">IP of equipment</string>
+    <string name = "Text_getequipstatus_status7_left">Port of equipment</string>
+    <string name = "Text_getequipstatus_wait_right">Searching...</string>
+    <!--
+    Below are strings used on activity_collectdata.xml.
+    -->
+    <string name = "Button_collectdata_BackToEquip">Back</string>
+    <!--
+    Below are strings used on activity_unbindequip.xml.
+    -->
+    <string name = "Button_unbindequip_BackToEquip">Back</string>
+    <!--
+    Below are strings used on select type of data. It will be used on collectdata and changedatalabel.
+    -->
+    <string-array name = "type_of_data">
+        <item>sit</item>
+        <item>stand</item>
+        <item>Go straight</item>
+        <item>Go uphill/upstairs</item>
+        <item>Go downhill/downstairs</item>
+        <item>Go left</item>
+        <item>Go right</item>
+    </string-array>
+</resources>
