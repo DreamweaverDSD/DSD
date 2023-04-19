@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_20220816_144241"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/Text_data_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_of_top_textview"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/Text_data_Name"
+        android:textColor="@color/purple_700"
+        android:textSize="@dimen/text_of_top_textview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/Button_data_GetDataList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_top_and_second"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:backgroundTint="@color/Button_GetDataList"
+        android:text="@string/Button_data_GetDataList"
+        android:textSize="@dimen/text_of_button" />
+
+    <Button
+        android:id="@+id/Button_data_DiscardData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:backgroundTint="@color/Button_DiscardData"
+        android:text="@string/Button_data_DiscardData"
+        android:textSize="@dimen/text_of_button" />
+
+    <Button
+        android:id="@+id/Button_data_ChangeDataLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:backgroundTint="@color/Button_ChangeDataLabel"
+        android:text="@string/Button_data_ChangeDataLabel"
+        android:textSize="@dimen/text_of_button" />
+
+    <Button
+        android:id="@+id/Button_data_BackToMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:backgroundTint="@color/Button_Data"
+        android:text="@string/Button_data_BackToMain"
+        android:textSize="@dimen/text_of_button" />
+
+</LinearLayout>

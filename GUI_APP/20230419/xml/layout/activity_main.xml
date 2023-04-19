@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:theme="@style/AppTheme"
+    tools:context=".MainActivity">
+
+    <!--
+    android:background="@drawable/img_20220606_182328"
+
+
+    <TextView
+        android:background="@color/Table"
+        android:id="@+id/Text_main_name"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/Text_main_Name"
+        android:textSize="@dimen/text_of_top_textview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+    -->
+
+    <Button
+        android:id="@+id/Button_main_UserInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_top_and_second"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:backgroundTint="@color/Button_UserInfo"
+        android:text="@string/Button_main_UserInfo"
+        android:textSize="@dimen/text_of_button" />
+
+    <Button
+        android:id="@+id/Button_main_GetUserGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:backgroundTint="@color/Button_GetUserGuide"
+        android:text="@string/Button_main_GetUserGuide"
+        android:textSize="@dimen/text_of_button" />
+
+    <Button
+        android:id="@+id/Button_main_Equipments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:backgroundTint="@color/Button_Equipments"
+        android:text="@string/Button_main_Equipments"
+        android:textSize="@dimen/text_of_button" />
+
+    <Button
+        android:id="@+id/Button_main_Data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:backgroundTint="@color/Button_Data"
+        android:text="@string/Button_main_Data"
+        android:textSize="@dimen/text_of_button" />
+
+    <Button
+        android:id="@+id/Button_main_Model"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:backgroundTint="@color/Button_Model"
+        android:text="@string/Button_main_Model"
+        android:textSize="@dimen/text_of_button" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:layout_weight="1"
+        android:gravity="bottom|center"
+        android:text="@string/Text_main_Copyright"
+        android:textSize="@dimen/text_of_others" />
+
+
+</LinearLayout>

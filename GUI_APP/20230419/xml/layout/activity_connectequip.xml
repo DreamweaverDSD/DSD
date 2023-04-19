@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:backgroundTint="@color/Button_ConnectEquip"
+        android:id="@+id/Text_connectequip_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_of_top_textview"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/Text_connectequip_Name"
+        android:textColor="@color/purple_200"
+        android:textSize="@dimen/text_of_second_textview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/Text_connectequip_InputIP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:text="@string/Text_connectequip_InputIP"
+        android:textSize="@dimen/text_of_notion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <EditText
+                android:id="@+id/editText_connectequip_InputIP0"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_of_edittext"
+                android:ems="3"
+                android:inputType="number"
+                android:text="255" />
+
+            <TextView
+                android:id="@+id/Text_connectequip_InputIP1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/margin_between_left_and_right"
+                android:layout_marginEnd="@dimen/margin_between_left_and_right"
+                android:text=":"
+                android:textSize="@dimen/text_of_notion"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/editText_connectequip_InputIP1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_of_edittext"
+                android:ems="3"
+                android:inputType="number"
+                android:text="255" />
+
+            <TextView
+                android:id="@+id/Text_connectequip_InputIP2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/margin_between_left_and_right"
+                android:layout_marginEnd="@dimen/margin_between_left_and_right"
+                android:text=":"
+                android:textSize="@dimen/text_of_notion"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/editText_connectequip_InputIP2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_of_edittext"
+                android:ems="3"
+                android:inputType="number"
+                android:text="255" />
+
+            <TextView
+                android:id="@+id/Text_connectequip_InputIP3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/margin_between_left_and_right"
+                android:layout_marginEnd="@dimen/margin_between_left_and_right"
+                android:text=":"
+                android:textSize="@dimen/text_of_notion"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/editText_connectequip_InputIP3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_of_edittext"
+                android:ems="3"
+                android:inputType="number"
+                android:text="255" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/Text_connectequip_InputPort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:text="@string/Text_connectequip_InputPort"
+        android:textSize="@dimen/text_of_notion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/editText_connectequip_InputPort"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_of_edittext"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:ems="5"
+        android:inputType="number"
+        android:text="65535" />
+
+    <TextView
+        android:id="@+id/Text_connectequip_Error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:textSize="@dimen/text_of_notion"
+        android:textColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:backgroundTint="@color/Button_ConnectEquip"
+        android:id="@+id/Button_connectequip_Connect"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:text="@string/Button_connectequip_Connect"
+        android:textSize="@dimen/text_of_button" />
+
+    <Button
+        android:backgroundTint="@color/Button_ConnectEquip"
+        android:id="@+id/Button_connectequip_BackToEquip"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:text="@string/Button_connectequip_BackToEquip"
+        android:textSize="@dimen/text_of_button" />
+
+
+
+</LinearLayout>

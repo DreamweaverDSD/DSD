@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:backgroundTint="@color/Button_ShowModelInfo"
+        android:id="@+id/Text_getequipstatus_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_of_top_textview"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/Text_showmodelinfo_Name"
+        android:textColor="@color/green"
+        android:textSize="@dimen/text_of_second_textview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:backgroundTint="@color/Button_ShowModelInfo"
+        android:id="@+id/Button_showmodelinfo_BackToModel"
+        android:gravity="left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_against_left"
+        android:layout_marginTop="@dimen/margin_between_two_button"
+        android:layout_marginEnd="@dimen/margin_against_right"
+        android:text="@string/Button_showmodelinfo_BackToModel"
+        android:textSize="@dimen/text_of_button" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:id="@+id/TableLayout_showmodelinfo_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_between_top_and_second"
+            android:divider="@drawable/table_v_divider"
+            android:orientation="vertical"
+            android:showDividers="middle|beginning|end"
+            android:stretchColumns="0">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/table_h_divider"
+                android:orientation="horizontal"
+                android:showDividers="middle|beginning|end">
+
+                <TextView
+                    android:id="@+id/Text_showmodelinfo_info1_left"
+                    android:layout_width="@dimen/size_of_tablelistleftname"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="@string/Text_showmodelinfo_info1_left"
+                    android:textSize="@dimen/text_of_notion"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/Text_showmodelinfo_info1_right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="@string/Text_showmodelinfo_wait_right"
+                    android:textSize="@dimen/text_of_notion"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
+
+</LinearLayout>
