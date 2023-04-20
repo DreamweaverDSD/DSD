@@ -42,7 +42,9 @@ Week 4:\
 
 Week 5:\
 4.15 In the group meeting, we discuss about the connection of equipment and the process of getting data in system architecture.\
-4.19 [GUI APP version 20230419](https://github.com/DreamweaverDSD/DSD/tree/main/GUI_APP/20230419)
+4.16 Communicate with Bob and make clear the format of json data in LoginCheck, AccountRegister, AccountInformation, SetAccountInformation, BindDevice and UnbindDevice\
+4.19 [GUI APP version 20230419](https://github.com/DreamweaverDSD/DSD/tree/main/GUI_APP/20230419)\
+4.20 [Fourth Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)
 
 # The Gantt chart of our group
 ```mermaid
