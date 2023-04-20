@@ -2,7 +2,7 @@
 # <p align="center" >Class Diagram</p>
 
 ## Diagram
-![Class Diagram](https://i.imgur.com/XgE6YUW.png)
+![Class Diagram](https://i.imgur.com/G14I4LN.png)
 
 ## Method Explanation
 ### <p align = "center">User</p>
@@ -24,6 +24,7 @@ public bool setUserNameAPI(string name)
 		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
 		if((int)response.StatusCode==404)return false;; //Deal with patch failure (deal with other status codes)
 		
+		this.userName = name;
 		return true;
 	}
  ```
@@ -34,7 +35,7 @@ public bool setUserNameAPI(string name)
 </br> Ex:
 
 ```csharp
-public bool updatePassword(string newPassword,string oldPassword)//newPassword and oldPassword are the values inserted by the user in the textboxes
+public bool updatePassword(string newPassword,string oldPassword, int userId)//newPassword and oldPassword are the values inserted by the user in the textboxes
 	{
 		byte[] passwordBytes = Encoding.UTF8.GetBytes(oldPassword);
             	byte[] passwordHashBytes = SHA256.HashData(passwordBytes);//whatever hasing algorithm is used for the passwords in database
@@ -52,9 +53,10 @@ public bool updatePassword(string newPassword,string oldPassword)//newPassword a
         	}),
         	Encoding.UTF8,
         	"application/json");
-		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
+		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + userID, jsonContent);
 		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
-	
+		
+		this.password = password;
 		return true;
 	}
  ```
@@ -86,7 +88,8 @@ public bool setBirthdayAPI(Date birthday)
         	"application/json");
 		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
 		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
-	
+		
+		this.birthday = birthday;
 		return true;
 	}
 ```
@@ -95,7 +98,7 @@ public bool setBirthdayAPI(Date birthday)
 </br> Ex:
 
 ```csharp
-public bool setPhoneNumberAPI(string phonenumber)
+public bool setPhoneNumberAPI(string phoneNumber)
 	{
 		//validate phone number(Could be made into a method of it's own)
 		//It ins't possible to distinguish user error from API error with a bool, so maybe we should verify if date is acceptable in the window code
@@ -103,13 +106,14 @@ public bool setPhoneNumberAPI(string phonenumber)
 		using StringContent jsonContent = new(
         	JsonSerializer.Serialize(new
         	{
-            		phoneNumber =  $"{phonenumber}"
+            		phoneNumber =  $"{phoneNumber}"
         	}),
         	Encoding.UTF8,
         	"application/json");
 		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
 		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
-	
+		
+		this.phoneNumber = phoneNumber
 		return true;
 	}
 ```
@@ -128,7 +132,8 @@ public bool setEmailAPI(string email)
         	"application/json");
 		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
 		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
-	
+		
+		this.email = email;
 		return true;
 	}
 ```
@@ -136,26 +141,33 @@ public bool setEmailAPI(string email)
 
 ### <p align="center">Authentication</p>
 
-* __login(string, string):user__ - This method should make a GET call to the user database API in order to check if a user with the given email exists. If an entry for that email does exist, the method should then use the method getPassword() to check the current password from the user database and compare it to the hash of the password written by the user in the password text box. If the passwords match the user's identity is verified and he should be logged in, otherwise they should be denied access to the account. This method takes as parameter two strings, one storing the value the user wrote in the email textbox in the login view, and the other one storing the value they wrote in the password textbox in the login view.
+* __login(string, string):user__ - This method should make a POST call to the login endpoint of the user database API, sending the email and password the current user inserted into each of the corresponding text boxes in the login page. If the method is succesful in verifying the identity of the user trying to log into an account, it then asks for the user entry associated with the specific give email, in order to retrieve other information related to that user that might be stored in the database.This method takes as parameter two strings, one storing the value the user wrote in the email textbox in the login view, and the other one storing the value they wrote in the password textbox in the login view.
 </br> Ex:
 
 ```csharp
 public static User login(string email, string password)
 	{
-		User user = new User();
+		using StringContent jsonContent = new(
+		JsonSerializer.Serialize(new
+        	{
+            		email =  $"{email}",
+			password = $"{password}"
+        	}),
+        	Encoding.UTF8,
 		
-	
-		using HttpResponseMessage response = httpclient.GetAsync(userURL + "?email=" + email);
+		using HttpResponseMessage response = await httpClient.PostAsync(userURL/login, jsonContent);
+		
 		if(response.StatusCode == "404")//We could verify for more status codes, displaying different messages
 		{
 			//warn user login failed
 			return null;
 		}
 		
-		var jsonResponse = await response.Content.ReadAsStringAsync();		
+		using HttpResponseMessage getResponse = await httpClient.GetAsync(userURL + "?email=" + email, jsonContent);				
+		var jsonResponse = await getResponse.Content.ReadAsStringAsync();		
 		JsonNode jsonNode = JsonNode.Parse(jsonResponse);
-		string apiPassword = jsonNode["password"].ToString();
-		if(apiPassword != password) return null; //warn user login failed - return NULL
+		
+		User user = new User();
 		user.setLogged();
 		user.setId(Convert.ToInt32(jsonNode["id"]));
 		user.setEmail(jsonNode["email"]);
@@ -165,13 +177,11 @@ public static User login(string email, string password)
 		string birthday=jsonNode["birthday"];//verify if is null
 		user.setBirthday(SimpleDateFormat("dd/MM/yyyy").parse(birthday););
 		
-	
-		
 		return user;
 	}
 ```
 
-* __logout(User)__ : bool - This method is called when the user wishes to logout of their account, changing the user's bool variable Logged to false. This method takes as parameter a User, representing the user currently calling the method.
+* __logout(User)__ : bool - This method is called when the user wishes to logout of their account, changing the user's bool variable Logged to false. This method takes as parameter a User, representing the user currently calling the method. 
 </br> Ex:
 
 ```csharp
@@ -192,7 +202,7 @@ public static bool logout(User user)
 	}
 ```
 
-* __register(string, string):user__ - This method should make a GET call to the user database API in order to check if the email the user is currently attempting to create a new account with is already in use or not. If the email is available, the method should make a POST call to the user database API, in order to create a new user entry with the email and password in question. This method takes as parameter two strings, one storing the value the user wrote in the email textbox, and the other one storing what they wrote in the password textbox in the register view.
+* __register(string, string):user__ - This method should make a POST call to the register endpoint of the user database API, sending a User with the email and password the current user is trying to create an account with. If the method is succesful in creating a new account, it then makes a GET call to the user API in order to retrieve the id of the user entry associated with the specific given email. This method takes as parameter two strings, one storing the value the user wrote in the email textbox, and the other one storing what they wrote in the password textbox in the register view.
 
 </br> Ex:
 
@@ -203,7 +213,7 @@ public static User register(string email, string password)
 		User user = new User(email,password);
 		
 	
-    		using HttpResponseMessage response = await httpClient.PostAsync(userURL, user);
+    		using HttpResponseMessage response = await httpClient.PostAsync(userURL + "/register", user);
     		if((int)response.StatusCode==404) return null //Deal with patch failure (deal with other status codes)
 	
 		using HttpResponseMessage response = httpclient.GetAsync(userURL + "?email=" + email);		
@@ -292,7 +302,7 @@ public bool discardData(int userId){
 
 ### <p align="center">PredictionModel</p>
 
-* __predictUserMotion(int):string - This method should retrieve for the user, the prediction the prediction model is capable of generating based on previous user data stored in the data database. This method should take the as a parameter an int representing the id of the user currently calling the method, and should make a GET call to return the prediction the prediction model makes for this specific user.
+* __predictUserMotion(int):string - This method should retrieve for the user, the predictions the prediction model is capable of generating based on previous user data stored in the data database. This method should take the as a parameter an int representing the id of the user currently calling the method, and should make a GET call to return the prediction the prediction model makes for this specific user.
 </br> Ex:
 
 ```csharp
@@ -326,17 +336,18 @@ public bool resetModel(int userId){
 
 ### <p align="center">Equipment</p>
 
-* __connectEquipment(int,string):bool__ - This method is supposed to allow the user currently calling it to connect to the sensors. With a limited number of equipment available the we must make an API posr request sending the user's Id and the type of data they are planning of collecting. If the equipment is availbale our user should be able to connect to it, otherwise they should be warned of it's unavailability. This method takes an int and a string as parameters, with the integer representing the id of the user currently calling the method, and the string representing the type of movement the user plans to collect data for.
+* __connectEquipment(string, int, int):bool__ - This method is supposed to allow the user currently calling it to connect to the sensors. With a limited number of equipment available the we must make an API posr request sending the user's Id and the type of data they are planning of collecting. If the equipment is availbale our user should be able to connect to it, otherwise they should be warned of it's unavailability. This method takes an int and a string as parameters, with the integer representing the id of the user currently calling the method, and the string representing the type of movement the user plans to collect data for.
 </br> Ex:
 
 ```csharp
 
-public bool connectEquipment(int userId, string movementType){
+public bool connectEquipment(string type, int ip, int port){
 	using StringContent jsonContent = new(
         	JsonSerializer.Serialize(new
         	{
-            		userID = $"{userId}",
-			movementType = $"{movementType}"
+            		ip = $"{ip}",
+			type = $"{type}",
+			port = $"{port}"
         	}),
         	Encoding.UTF8,
         	"application/json");
