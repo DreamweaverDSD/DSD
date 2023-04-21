@@ -2,13 +2,13 @@
 # <p align="center" >Class Diagram</p>
 
 ## Diagram
-![Class Diagram](https://i.imgur.com/G14I4LN.png)
+![Class Diagram](https://i.imgur.com/HFigAOk.png)
 
 ## Method Explanation
 ### <p align = "center">User</p>
 
 
-* __setUserNameAPI(string)__ : bool - This method should make a PUT/PATCH call to the user database API in order to add a user's name. This method takes as parameter a string storing the value the user wrote in the username textbox.
+* __setUserNameAPI(string)__ : bool - This method should make a PUT/PATCH call to the user database API in order to add a user's name. This method takes as parameter a string storing the value the user wrote in the username textbox. This method returns a bool based on it's success.
 </br> Ex:
 
 ```csharp
@@ -24,14 +24,14 @@ public bool setUserNameAPI(string name)
 		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
 		if((int)response.StatusCode==404)return false;; //Deal with patch failure (deal with other status codes)
 		
-		this.userName = name;
+		this.setUserName(name);
 		return true;
 	}
  ```
 
 
 
-* __updatePassword(string,string)__ : bool- This method is used to update the user's password when they're already logged into their account. The user inserts their previous password, and the password they wish to change it to. This method should make a GET call to get the hash of the current user password, compare it to the hash of the text in the previous user password text box, and if they match it should make a PUT/PATCH call to the user database API changing the previous password to the new one(the hash of the text in the new password text box). This method takes as parameter two strings, one storing the value the user wrote in the previousePassword textbox, and the other storing the value the user wrote in the newPassword textbox.
+* __updatePassword(string,string)__ : bool- This method is used to update the user's password when they're already logged into their account. The user inserts their previous password, and the password they wish to change it to. This method should compare the current user password, stored in the database, with the hash of the text in the previous user password text box, and if they match it should make a PUT/PATCH call to the user database API changing the previous password to the new one(the hash of the text in the new password text box). This method takes as parameter two strings, one storing the value the user wrote in the previousePassword textbox, and the other storing the value the user wrote in the newPassword textbox, and an integer storing the id of the user currently asking to update their password. This method returns a bool representing it's success.
 </br> Ex:
 
 ```csharp
@@ -56,16 +56,34 @@ public bool updatePassword(string newPassword,string oldPassword, int userId)//n
 		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + userID, jsonContent);
 		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
 		
-		this.password = password;
+		this.setPassword(password);
 		return true;
 	}
  ```
 
-* __getUserGuide():string__ - !!CONFUSED!! 
+* __getUserGuide():string__ - This method should retrieve from the server some text explaining how the application operates and should be used, in order to provide some explanations and clarify some doubts the user may have. This method returns a string containing that information, or null in the case of failure to retrieve it.
+</br> Ex:
 
+```csharp
+public string getUserGuide()
+	{
+		using HttpResponseMessage response = await httpClient.GetAsync(BaseURL + "/userguide");
+		
+		if(response.StatusCode == "404")//We could verify for more status codes, displaying different messages
+		{
+			//warn user login failed
+			return null;
+		}
+		
+				
+		var jsonResponse = await response.Content.ReadAsStringAsync();		
+		JsonNode jsonNode = JsonNode.Parse(jsonResponse);
+		
+		return jsonNode["userGuide"];
+	}
+ ```
 
-
-* __setBirthdayAPI(Date)__ : bool - This method should make a PUT/PATCH call to the user database API in order to add a user's birthday. This method takes as parameter a Date storing the value the user  inserted as their birthday.
+* __setBirthdayAPI(Date)__ : bool - This method should make a PUT/PATCH call to the user database API in order to add or change a user's birthday. This method takes as parameter a Date storing the value the user inserted as their birthday. This method returs a bool according to it's success.
 </br> Ex:
 
 ```csharp
@@ -89,12 +107,12 @@ public bool setBirthdayAPI(Date birthday)
 		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
 		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
 		
-		this.birthday = birthday;
+		this.setBirthday(birthday);
 		return true;
 	}
 ```
 
-* __setPhoneNumber(string)__ : bool- This method should make a PUT/PATCH call to the user database API in order to add a user's phone number. This method takes as parameter a string storing the value the user wrote in the phoneNumber textbox.
+* __setPhoneNumber(string)__ : bool- This method should make a PUT/PATCH call to the user database API in order to add or change a user's phone number. This method takes as parameter a string storing the value the user wrote in the phoneNumber textbox. This method returs a bool according to it's success.
 </br> Ex:
 
 ```csharp
@@ -113,12 +131,12 @@ public bool setPhoneNumberAPI(string phoneNumber)
 		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
 		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
 		
-		this.phoneNumber = phoneNumber
+		this.setPhoneNumber = phoneNumber
 		return true;
 	}
 ```
 
-* __setEmail(string)__ : bool - Set the user's email variable to the text in the email text box of a successful login attempt. This method takes as parameter a string storing the value the user wrote in the email textbox
+* __setEmail(string)__ : bool - This method should make a PUT/PATCH call to the user database API in order to change a user's email address. This method takes as parameter a string storing the new email the user wrote in the email textbox. This method returs a bool according to it's success.
 </br> Ex:
 
 ```csharp
@@ -133,7 +151,7 @@ public bool setEmailAPI(string email)
 		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
 		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
 		
-		this.email = email;
+		this.setEmail(email);
 		return true;
 	}
 ```
@@ -141,24 +159,21 @@ public bool setEmailAPI(string email)
 
 ### <p align="center">Authentication</p>
 
-* __login(string, string):user__ - This method should make a POST call to the login endpoint of the user database API, sending the email and password the current user inserted into each of the corresponding text boxes in the login page. If the method is succesful in verifying the identity of the user trying to log into an account, it then asks for the user entry associated with the specific give email, in order to retrieve other information related to that user that might be stored in the database.This method takes as parameter two strings, one storing the value the user wrote in the email textbox in the login view, and the other one storing the value they wrote in the password textbox in the login view.
+* __login(User, string, string):bool__ - This method should allow a user to login into their previously created account. If the credentials inserted by the user are associated with an existing account that's stored in the user database, and the login process is successful, this method set the user instance with the other information stored about that particular user in the user database and returns it. It takes as parameters two strings, one storing the value the user wrote in the email textbox in the login view, and the other one storing the value they wrote in the password textbox in the login view, and a User instance. This method should return false in the case of login failure and true in the case of success.
 </br> Ex:
 
 ```csharp
-public static User login(string email, string password)
+public static bool login(User user, string email, string password)
 	{
-		using StringContent jsonContent = new(
-		JsonSerializer.Serialize(new
-        	{
-            		email =  $"{email}",
-			password = $"{password}"
-        	}),
-        	Encoding.UTF8,
+		user.setEmail(email);
+		user.setPassword(password);
 		
-		using HttpResponseMessage response = await httpClient.PostAsync(userURL/login, jsonContent);
+		using HttpResponseMessage response = await httpClient.PostAsync(userURL/login, user);
 		
 		if(response.StatusCode == "404")//We could verify for more status codes, displaying different messages
 		{
+			user.setEmail(NULL);
+			user.setPassword(NULL);
 			//warn user login failed
 			return null;
 		}
@@ -167,7 +182,6 @@ public static User login(string email, string password)
 		var jsonResponse = await getResponse.Content.ReadAsStringAsync();		
 		JsonNode jsonNode = JsonNode.Parse(jsonResponse);
 		
-		User user = new User();
 		user.setLogged();
 		user.setId(Convert.ToInt32(jsonNode["id"]));
 		user.setEmail(jsonNode["email"]);
@@ -177,69 +191,70 @@ public static User login(string email, string password)
 		string birthday=jsonNode["birthday"];//verify if is null
 		user.setBirthday(SimpleDateFormat("dd/MM/yyyy").parse(birthday););
 		
-		return user;
+		return true;
 	}
 ```
 
-* __logout(User)__ : bool - This method is called when the user wishes to logout of their account, changing the user's bool variable Logged to false. This method takes as parameter a User, representing the user currently calling the method. 
+* __logout(User)__ : bool - This method is called when the user wishes to logout of their account, deleting the User instance. It should return false in the case the user received isn't logged in, and true in case of success.
 </br> Ex:
 
 ```csharp
 public static bool logout(User user)
 	{
 		if(!user.getLogged()) return false
-		/*user.setLogged(); // if fails return false 
+		user.setLogged(); // if fails return false 
 		user.setId(0);//Some representation of no user
 		user.setEmail(NULL);
 		user.setPassword(NULL);
 		user.setEmail(NULL);
 		user.setuserName(NULL);
-		user.setBirthday(NULL);*/
-		
-		//Delete user
+		user.setBirthday(NULL);
 		
 		return true
 	}
 ```
 
-* __register(string, string):user__ - This method should make a POST call to the register endpoint of the user database API, sending a User with the email and password the current user is trying to create an account with. If the method is succesful in creating a new account, it then makes a GET call to the user API in order to retrieve the id of the user entry associated with the specific given email. This method takes as parameter two strings, one storing the value the user wrote in the email textbox, and the other one storing what they wrote in the password textbox in the register view.
+* __register(User, string,string):bool__ - This method should allow a user to register a new account for the application. If the credentials inserted by the user for the new account are accepted, and a new account is registered succesfully, this method creates a new User, storing the email, password and id retrieved from the database, and returns it. This method takes as parameter two strings, one storing the value the user wrote in the email textbox, and the other one storing what they wrote in the password textbox in the register view and an instance of User. This returns true in the case of registar success and false in the case of failure.
 
 </br> Ex:
 
 ```csharp
-public static User register(string email, string password)
+public static User register(User user, string email, string password)
 	{
-		//creating user with email and password
-		User user = new User(email,password);
-		
+		user.setEmail(email);
+		user.setPassword(password);		
 	
     		using HttpResponseMessage response = await httpClient.PostAsync(userURL + "/register", user);
-    		if((int)response.StatusCode==404) return null //Deal with patch failure (deal with other status codes)
-	
+    		if((int)response.StatusCode==404)
+		{
+			user.setEmail(NULL);
+			user.setPassword(NULL);
+			return false; //Deal with post failure(other status codes too)
+		}
 		using HttpResponseMessage response = httpclient.GetAsync(userURL + "?email=" + email);		
 		var jsonResponse = await response.Content.ReadAsStringAsync();		
 		JsonNode jsonNode = JsonNode.Parse(jsonResponse);
 		user.setId(Convert.ToInt32(jsonNode["id"]));
 		user.setLogged();
 		
-		return user;
+		return true;
 	}
 ```
 
 ### <p align="center">DataManagement</p>
 
-* __getData(int, Motion motion):bool__ - This method is used to retrieve, from the data database, the data collected by the user currently calling the method. This method should make a GET call to the data database API and generate a List of Data objects, returning it. This method takes as a parameter the id of the user currently calling the method.
+* __getData(int,int):Motion__ - This method should allow the user to retrieve data that they've collected from the data database. The data being retrieved will be returned in a Json format that should then be parsed and used to create a Motion instance that the method then returns. This method takes as parameters two integers, one representing the id of the user currently calling the method and the other representing the id of the motion being retrieved. This method returns the Motion instance generated in the case of success, or null in the case of failure.
 </br> Ex:
 
 ```csharp
-public bool getData(int id, Motion motion)//user id or what may be necessary to identify the data
+public Motion getData(int id, int motionId)//user id or what may be necessary to identify the data
 {
-	HttpResponse response = await client.getAsync(dataURL+'/'+ id );
+	HttpResponse response = await client.getAsync(dataURL + "/" + id + "motionID");
 	
 	
 	if(response.IsSuccessStatusCode){
+		Motion motion = new Motion();
 		string json = await response.Content.ReadAsStringAsync();
-
     		JArray sensorDataArray = JsonConvert.DeserializeObject<JArray>(json);
 	
     		foreach (JObject sensorData in sensorDataArray)
@@ -274,16 +289,69 @@ public bool getData(int id, Motion motion)//user id or what may be necessary to 
         			}*/
     		}
     		//return dataList;
-		return true
+		return Motion
 	}
-	//return null;
-	return false;
+	return null;
 }
-
-
 ```
 
-* __discardData(int):bool__ - This method should delete the data stored in the data database associated with the user currently calling the method. It makes a delete call to the data database API. This method should make a DELETE call to the data database API and return a status code. 
+* __getAllData(int,int):Motion__ - This method should allow the user to retrieve the entire history of data that they've collected from the data database. The data being retrieved will be returned in a Json format that should then be parsed and used to create Motion instances that the method then returns. This method takes as parameters two integers, one representing the id of the user currently calling the method and the other representing the id of the motion being retrieved. This method returns the Motion instance generated in the case of success, or null in the case of failure.
+</br> Ex:
+
+```csharp
+public list<Motion> getAllData(int id, int motionId)//user id or what may be necessary to identify the data
+{
+	HttpResponse response = await client.getAsync(dataURL+'/'+ id );
+	
+	
+	if(response.IsSuccessStatusCode){
+		List<Motion> motionList = new List<Motion>();
+		string json = await response.Content.ReadAsStringAsync();
+    		JArray sensorDataArray = JsonConvert.DeserializeObject<JArray>(json);
+	
+		foreach(var motion in motionArray)
+		{
+    			foreach (var sensorData in sensorDataArray)
+    				{
+					store each entry of the data returned by the API in Motion Records
+				
+        				/*double timestamp = sensorData["timestamp"].Value<double>();
+
+        				foreach (var sensor in sensorData)
+        				{
+            					if (sensor.Key == "timestamp")
+                				continue;
+
+            					JObject sensorValues = sensor.Value.Value<JObject>();
+
+            					Data data = new Data
+            					{
+                					SensorId = sensor.Key,
+                					X = sensorValues["X"].Value<double>(),
+                					Y = sensorValues["Y"].Value<double>(),
+                					Z = sensorValues["Z"].Value<double>(),
+                					AccX = sensorValues["accX"].Value<double>(),
+                					AccY = sensorValues["accY"].Value<double>(),
+                					AccZ = sensorValues["accZ"].Value<double>(),
+                					AsX = sensorValues["asX"].Value<double>(),
+                					AsY = sensorValues["asY"].Value<double>(),
+                					AsZ = sensorValues["asZ"].Value<double>(),
+                					Timestamp = timestamp
+            					};
+
+            				dataList.Add(data);
+        				}*/
+    				}
+		//return dataList;
+		motionList.Add(motion);
+		}
+    		return motionList
+	}
+	return null;
+}
+```
+
+* __discardAllData(int):bool__ - This method should delete all the data stored in the data database associated with the user currently calling the method. This method takes as a parameter and integer representing the id of the user currently calling the method, and returns a bool representing it's success.
 </br> Ex:
 
 ```csharp
@@ -296,47 +364,29 @@ public bool discardData(int userId){
 
 ```
 
+* __discardData(int, int):bool__ - This method should delete some data selected by the user from the data entries, associated with the user currently calling the method; in the data database. This method takes as a parameter and integer representing the id of the user currently calling the method, and an integer representing the id of the motion to be deleted. This method returns a bool representing it's success.
+</br> Ex:
+
+```csharp
+
+public bool discardData(int userId, int motionId){
+	//the data linked to the user id will be deleted
+	HttpResponse response = await client.DeleteAsync(dataUrl + "/" + userId + "/" + motionId);
+	return response.IsSuccessStatusCode;
+}
+
+```
+
 
 * __ChangeLabel(string)__ - !!CONFUSED!!
 
 
-### <p align="center">PredictionModel</p>
 
-* __predictUserMotion(int):string - This method should retrieve for the user, the predictions the prediction model is capable of generating based on previous user data stored in the data database. This method should take the as a parameter an int representing the id of the user currently calling the method, and should make a GET call to return the prediction the prediction model makes for this specific user.
-</br> Ex:
-
-```csharp
-
-public string predictUserMotion(int userId){
-
-	//Verify if user has data to base prediction on
-	
-	HttpResponse response = await client.getAsync(predictURL + "/" + userId);
-	if(response.StatusCode == "404") return null; //Deal with other possible status codes
-	
-	var jsonResponse = await response.Content.ReadAsStringAsync();		
-	JsonNode jsonNode = JsonNode.Parse(jsonResponse);
-	
-	return jsonNode["prediction"].ToString();
-	
-}
-```
-
-* __resetModel(int):bool__ - This method should allow the user to reset their personal predition model. This method should either only be allowed to be called by a user that as collected enough data to have their own prediction model (instead of the general prediction model available to all users), or the user should be informed, when trying to call this method, that they don't have a prediction model to reset.
-</br> Ex:
-
-```csharp
-
-public bool resetModel(int userId){
-	HttpResponse response = await client.getAsync(predictURL + "/" + userId + "/reset");
-	if(response.StatusCode == "404") return false; //Deal with other possible status codes
-	return true;
-}
-```
 
 ### <p align="center">Equipment</p>
 
-* __connectEquipment(string, int, int):bool__ - This method is supposed to allow the user currently calling it to connect to the sensors. With a limited number of equipment available the we must make an API posr request sending the user's Id and the type of data they are planning of collecting. If the equipment is availbale our user should be able to connect to it, otherwise they should be warned of it's unavailability. This method takes an int and a string as parameters, with the integer representing the id of the user currently calling the method, and the string representing the type of movement the user plans to collect data for.
+* __connectEquipment(string, int, int):bool__ - This method is supposed to allow the user currently callingg it to connect to the sensors. If the equipment is available then the user should be able to connct to it, otherwise they should be warned of it's unavailability. This method takes as parameters a string and two integers. The string represents the type of equipment, and the integer represent the port and the ip of the sensor. This method returns a bool based on it's success
+
 </br> Ex:
 
 ```csharp
@@ -359,46 +409,65 @@ public bool connectEquipment(string type, int ip, int port){
 
 ```
 
-* __disconnectEquipment():bool__ - This method is supposed to allow the user currently calling it to disconnect from the sensors. This method should either only be allowed to be called by a user that successfully connected to the equipment (it was available and there were no errors on either the user or server end when performing the connection), or the user should be informed, when trying to call this method, that they need to connect to the equipment first. T
+* __disconnectEquipment():bool__ - This method is supposed to allow the user currently calling it to disconnect from the sensors. This method should either only be allowed to be called by a user that successfully connected to the equipment (it was available and there were no errors on either the user or server end when performing the connection), or the user should be informed, when trying to call this method, that they need to connect to the equipment first. This method takes, as a parameter, an integer representing the id of the user currently calling in, and returns a bool based on it's success.
 </br> Ex:
 
 ```csharp
 
-public bool disconnectEquipment(){
+public bool disconnectEquipment(int userId){
 		
-	HttpResponseMessage response = await client.DeleteAsync(sensorsURL + "/connect");
+	using StringContent jsonContent = new(
+        	JsonSerializer.Serialize(new
+        	{
+            		id = $"{userId}"
+        	}),
+        	Encoding.UTF8,
+        	"application/json");	
+	HttpResponseMessage response = await client.DeleteAsync(sensorsURL + "/disconnect");
 	
 	return response.IsSuccessStatusCode //Deal with the possibility of failure to connect
 }
 
 ```
 
-* __collectData(int):bool__ - This method should warn the server that the user that last connected wants to start collecting data for the movement type they specified on connection. The method should send the id of the user currently calling it, and a "start" so that data collection can begin. This method should either only be allowed to be called by a user that successfully connected to the equipment (it was available and there were no errors on either the user or server end when performing the connection), or the user should be informed, when trying to call this method, that they need to connect to the equipment first. This method takes as parameter and integer representing the id of the user currently calling the method.
+* __collectData(int,enum):bool__ - This method should warn the server that the user that last connected wants to start collecting data. This method should either only be allowed to be called by a user that successfully connected to the equipment (it was available and there were no errors on either the user or server end when performing the connection), or the user should be informed, when trying to call this method, that they need to connect to the equipment first. After the server is warned this method should be able to retrieve the data being sent to the server every couple of seconds, and use it to update the charts, in order to display it in real time. This method takes as parameters an integer representing the id of the user currently calling the method, and an enum, representing the type of movemente the user intends to collect data for. This method returs a bool based on it's success
 </br> Ex:
 
 ```csharp
 
-public bool collectData(int userId){
+public bool collectData(int userId, enum movementType){
 	
 	using StringContent jsonContent = new(
         	JsonSerializer.Serialize(new
         	{
             		userID = $"{userId}",
+			type = $"{movementType}"
         	}),
         	Encoding.UTF8,
         	"application/json");
 		
 	HttpResponseMessage response = await client.PostAsync(sensorsURL + "/collect/start" , jsonContent);
+	if(response.StatusCode == "404") return false; //Deal with other possible status codes
 	
-	//Receive real time data returned by server
-	
-	return response.IsSuccessStatusCode //Deal with the possibility of failure to connect	
+	this.seIsCollecting(true);
+	this.thread = new Thread(getDataLoop(userId, motionId));
+	this.thread.Start();
+	return true; 	
+}
+
+private void getDataLoop(int userId, int motionId)
+{
+	while (this.isCollecting)
+        {
+            Motion motion = this.getData(userId, motionId);
+            //draw graphs 
+            
+            Thread.Sleep(2000);
+        }
 }
 ```
 
-
-
-* __collectDataStop(int):bool__ - This method should warn the server that the user that last connected wants to stop collecting data for the movement type they specified on connection. The method should send the id of the user currently calling it, and an "end" so that data collection can stop. This method should either only be allowed to be called by a user that successfully connected to the equipment (it was available and there were no errors on either the user or server end when performing the connection) and is currently collecting data, or the user should be informed, when trying to call this method, that they need to start collecting data before they can stop data collection. This method takes as parameter an integer representing the id of the user currently calling the method.
+* __collectDataStop(int):bool__ - This method should warn the server that the user that last connected wants to stop collecting data. This method should either only be allowed to be called by a user that successfully connected to the equipment (it was available and there were no errors on either the user or server end when performing the connection) and is currently collecting data, or the user should be informed, when trying to call this method, that they need to start collecting data before they can stop data collection. This method should also set the isCollecting bool variable as false in order to stop the device from keeping on requesting data. This method takes as parameter an integer representing the id of the user currently calling the method, and returns a bool based on it's success.
 </br> Ex:
 
 ```csharp
@@ -413,14 +482,17 @@ using StringContent jsonContent = new(
         	Encoding.UTF8,
         	"application/json");
 		
-	HttpResponseMessage response = await client.PostAsync(sensorsURL + "/collect/stop", jsonContent);	
-	collecting=false;
-	return response.IsSuccessStatusCode //Deal with the possibility of failure to connect	
+	HttpResponseMessage response = await client.PostAsync(sensorsURL + "/collect/stop", jsonContent);
+	if(response.StatusCode == "404") return false; //Deal with other possible status codes
+	
+	this.IsCollecting(false);
+	this.thread.Join();
+	return true;
 }
 ```
 
 
-* __getEquipmentStatus():string__ - This method should retrieve the status of the sensors. The method makes a get call to the sensor API, receiving a JsonArray with each entry representing a sensor. The method then parses the array, retreiving the status of each sensor and creating a string that is then returned.
+* __getEquipmentStatus():string__ - This method should retrieve the status of the sensors. The method makes a get call to the sensor API, receiving a JsonArray with each entry representing a sensor. The method then parses the array, retreiving the status of each sensor and creating a string that is then returned. In case of failure the method returns null.
 </br> Ex:
 
 ```csharp
@@ -447,7 +519,7 @@ public string getEquipmentStatus(){
 }
 ```
 
-* __getEquipmentInfo():string__ - This method should retrieve information about the sensors. The method makes a get call to the sensor API, receiving a JsonArray with each entry representing a sensor. The method then parses the array, retreiving the all the relevant information of each senso, creating a string of information that is then returned and can be presented.
+* __getEquipmentInfo():string__ - This method should retrieve information about the sensors. The method makes a get call to the sensor API, receiving a JsonArray with each entry representing a sensor. The method then parses the array, retreiving the all the relevant information of each senso, creating a string of information that is then returned and can be presented. In case of failure the method returns null.
 </br> Ex:
 
 ```csharp
@@ -473,3 +545,100 @@ public string getEquipmentStatus(){
     	return null; //warn user of failure
 }
 ```
+
+### <p align="center">PredictionModel</p>
+
+* __getPrediction(int):string__ - This method should allow the user to retrieve prediction that the prediction model makes based on the current data the user is sending it and the data it has sent previously, and that is stored in the data database. This method takes as parameter an integer representing the id of the user currently calling the method and returns a string that includes the current prediction model prediction. In case of failure the method returns null.
+</br> Ex:
+
+```csharp
+HttpResponse response = await client.getAsync(predictURL + "/" + userId);
+	if(response.StatusCode == "404") return null; //Deal with other possible status codes
+	
+	var jsonResponse = await response.Content.ReadAsStringAsync();		
+	JsonNode jsonNode = JsonNode.Parse(jsonResponse);
+	
+	return jsonNode["prediction"].ToString();
+```
+
+* __predictUserMotion(int):string - This method should warn the server that the user that is currently calling this method wants to start receiving predictions. This method should either only be allowed to be called by a user that has collected enough data to base a prediction on, or the user should be informed, when trying to call this method, that they need to collect more data  first. After the server is warned this method should be able to retrieve the predictions being sent to the server, by the prediction model, every couple of seconds, and use it to update a prediction list, in order to display it in real time. This method takes as a parameter an integer representing the id of the user currently calling the method, and returns a bool based on it's success.
+</br> Ex:
+
+```csharp
+
+public bool predictUserMotion(int userId){
+
+	//Verify if user has data to base prediction on
+	
+	using StringContent jsonContent = new(
+		JsonSerializer.Serialize(new
+        	{
+            		id = $"{userId}"
+        	}),
+        	Encoding.UTF8,
+		"application/json");
+	
+	HttpResponse response = await client.postAsync(predictURL + "/start", jsonContent);
+	if(response.StatusCode == "404") return false; //Deal with other possible status codes
+	
+	this.seIsPredicting(true);
+	this.thread = new Thread(predictUserMotionLoop(userId));
+	this.thread.Start();
+	
+	return true;
+	
+}
+
+private void predictUserMotionLoop(int userId)
+{
+	while (this.getPrediction())
+        {
+            string prediction = this.predictUserMotion(userId);
+            //update list of predictions
+            
+            Thread.Sleep(2000);
+        }
+}
+```
+
+* __predictUserMotionLoopStop(int):bool__ - This method should warn the server that the user that is currently calling this method wants to stop receiving prediction from the prediction model. This method should either only be allowed to be called by users that previously called the predictUserMotion method, and were successful, or should warn the user, when trying to call this method, that they need to start receiving predictions before they can call it. This method should set the isPredicting bool variable as false in order to stop the device from keeping on requesting more predictions. This method takes as parameter an integer representing the id of the user currently calling the method, and returns a bool based on it's success.
+
+</br> Ex:
+
+```csharp
+
+public bool predictUserMotionLoopStop(int userID){
+	
+	using StringContent jsonContent = new(
+        	JsonSerializer.Serialize(new
+        	{
+            		userID = $"{userId}",
+        	}),
+        	Encoding.UTF8,
+        	"application/json");
+		
+	HttpResponseMessage response = await client.PostAsync(predictURL + "/predict/stop", jsonContent);
+	if(response.StatusCode == "404") return false; //Deal with other possible status codes
+	
+	this.IsPredicting(false);
+	this.thread.Join();
+	return true;
+}
+```
+
+* __resetModel(int):bool__ - This method should allow the user to reset their personal predition model. This method should either only be allowed to be called by a user that as collected enough data to have their own prediction model (instead of the general prediction model available to all users), or the user should be informed, when trying to call this method, that they don't have a prediction model to reset. This method takes an integer as a paramenter representing the id of the user currently calling the method, and returns a bool based on it's success.
+</br> Ex:
+
+```csharp
+
+public bool resetModel(int userId){
+	HttpResponse response = await client.getAsync(predictURL + "/" + userId + "/reset");
+	if(response.StatusCode == "404") return false; //Deal with other possible status codes
+	return true;
+}
+```
+
+### <p align="center">Graphs</p>
+
+* __draw(Motion) : bool__ - This method should draw the graphs created to display the data collected by the sensors and retrieved from the server during collectData. It can also be used to draw graphs based on previous sessions of data collection. This method takes as a parameter a Motion instance, and returns a bool based on the success of the method.
+
