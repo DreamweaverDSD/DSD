@@ -21,7 +21,7 @@ public bool setUserNameAPI(string name)
         	}),
         	Encoding.UTF8,
         	"application/json");
-		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
+		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + this.getId(), jsonContent);
 		if((int)response.StatusCode==404)return false;; //Deal with patch failure (deal with other status codes)
 		
 		this.setUserName(name);
@@ -31,11 +31,11 @@ public bool setUserNameAPI(string name)
 
 
 
-* __updatePassword(string,string)__ : bool- This method is used to update the user's password when they're already logged into their account. The user inserts their previous password, and the password they wish to change it to. This method should compare the current user password, stored in the database, with the hash of the text in the previous user password text box, and if they match it should make a PUT/PATCH call to the user database API changing the previous password to the new one(the hash of the text in the new password text box). This method takes as parameter two strings, one storing the value the user wrote in the previousePassword textbox, and the other storing the value the user wrote in the newPassword textbox, and an integer storing the id of the user currently asking to update their password. This method returns a bool representing it's success.
+* __updatePassword(string,string)__ : bool- This method is used to update the user's password when they're already logged into their account. The user inserts their previous password, and the password they wish to change it to. This method should compare the current user password, stored in the database, with the hash of the text in the previous user password text box, and if they match it should make a PUT/PATCH call to the user database API changing the previous password to the new one(the hash of the text in the new password text box). This method takes as parameter two strings, one storing the value the user wrote in the previousePassword textbox, and the other storing the value the user wrote in the newPassword textbox. This method returns a bool representing it's success.
 </br> Ex:
 
 ```csharp
-public bool updatePassword(string newPassword,string oldPassword, int userId)//newPassword and oldPassword are the values inserted by the user in the textboxes
+public bool updatePassword(string newPassword,string oldPassword)//newPassword and oldPassword are the values inserted by the user in the textboxes
 	{
 		byte[] passwordBytes = Encoding.UTF8.GetBytes(oldPassword);
             	byte[] passwordHashBytes = SHA256.HashData(passwordBytes);//whatever hasing algorithm is used for the passwords in database
@@ -53,7 +53,7 @@ public bool updatePassword(string newPassword,string oldPassword, int userId)//n
         	}),
         	Encoding.UTF8,
         	"application/json");
-		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + userID, jsonContent);
+		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + this.getId(), jsonContent);
 		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
 		
 		this.setPassword(password);
@@ -104,7 +104,7 @@ public bool setBirthdayAPI(Date birthday)
         	}),
         	Encoding.UTF8,
         	"application/json");
-		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
+		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + this.getId(), jsonContent);
 		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
 		
 		this.setBirthday(birthday);
@@ -128,7 +128,7 @@ public bool setPhoneNumberAPI(string phoneNumber)
         	}),
         	Encoding.UTF8,
         	"application/json");
-		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
+		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + this.getId(), jsonContent);
 		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
 		
 		this.setPhoneNumber = phoneNumber
@@ -148,7 +148,7 @@ public bool setEmailAPI(string email)
         	}),
         	Encoding.UTF8,
         	"application/json");
-		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + user.getId(), jsonContent);
+		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + this.getId(), jsonContent);
 		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
 		
 		this.setEmail(email);
@@ -168,7 +168,7 @@ public static bool login(User user, string email, string password)
 		user.setEmail(email);
 		user.setPassword(password);
 		
-		using HttpResponseMessage response = await httpClient.PostAsync(userURL/login, user);
+		using HttpResponseMessage response = await httpClient.PostAsync(userURL + "/login", user);
 		
 		if(response.StatusCode == "404")//We could verify for more status codes, displaying different messages
 		{
@@ -378,9 +378,30 @@ public bool discardData(int userId, int motionId){
 ```
 
 
-* __ChangeLabel(string)__ - !!CONFUSED!!
+* __ChangeLabel(enum, int, int):bool__ - This method should allow the user to changne the label associated with some previously collected data. This method takes in an enum representing the new label the user wishes to associate with the data selected, an integer representing the data whose label needs to be changed, and an int representing the id of the user currently calling the method. This method returns a bool representing it's success.
 
+```csharp
 
+public bool ChangeLabel(enum motionType, int userId, int motionId){
+
+	JsonSerializer.Serialize(new
+       	{
+		type = "ChangeLabel",
+		account = $"{userId}",
+		motion = $"{motionId}",
+   		label =  $"{motionType.toString()}"
+       	}),
+       	Encoding.UTF8,
+       	"application/json");
+	using HttpResponseMessage response = await httpClient.PatchAsync(apiURL, jsonContent);
+	
+	if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
+	
+	return true;
+		
+}
+
+```
 
 
 ### <p align="center">Equipment</p>
@@ -441,7 +462,7 @@ public bool collectData(int userId, enum movementType){
         	JsonSerializer.Serialize(new
         	{
             		userID = $"{userId}",
-			type = $"{movementType}"
+			label = $"{movementType}"
         	}),
         	Encoding.UTF8,
         	"application/json");
