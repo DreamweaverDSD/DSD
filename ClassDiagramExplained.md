@@ -7,28 +7,37 @@
 ## Method Explanation
 ### <p align = "center">User</p>
 
-
-* __setUserNameAPI(string)__ : bool - This method should make a PUT/PATCH call to the user database API in order to add a user's name. This method takes as parameter a string storing the value the user wrote in the username textbox. This method returns a bool based on it's success.
+* __setUserInfo(string,string,int,Date)__:bool 
 </br> Ex:
 
 ```csharp
-public bool setUserNameAPI(string name)
+public bool setUserInfo(string name, string email, string phoneNumber, Date birthday)
 	{
+		
 		using StringContent jsonContent = new(
         	JsonSerializer.Serialize(new
         	{
+			type = "ChangeUserInfo"
+			id = $"{this.getId()}"
+			password = $"{this.getPassword()}"
             		username = $"{name}"
+			email = $"{email}"
+            		phoneNumber = $"{phoneNumber}"
+			birthday = $"{birthday.toString()}"
         	}),
         	Encoding.UTF8,
         	"application/json");
-		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + this.getId(), jsonContent);
-		if((int)response.StatusCode==404)return false;; //Deal with patch failure (deal with other status codes)
+		using HttpResponseMessage response = await httpClient.PostAsync(baseURL, jsonContent);
+		if((int)response.StatusCode==404)return false; //Deal with patch failure (deal with other status codes)
 		
-		this.setUserName(name);
+		this.setName(name);
+		this.setEmail(email);
+		this.setPhoneNumber(phoneNumber);
+		this.setBirthday(birthday);
+		
 		return true;
 	}
  ```
-
 
 
 * __updatePassword(string,string)__ : bool- This method is used to update the user's password when they're already logged into their account. The user inserts their previous password, and the password they wish to change it to. This method should compare the current user password, stored in the database, with the hash of the text in the previous user password text box, and if they match it should make a PUT/PATCH call to the user database API changing the previous password to the new one(the hash of the text in the new password text box). This method takes as parameter two strings, one storing the value the user wrote in the previousePassword textbox, and the other storing the value the user wrote in the newPassword textbox. This method returns a bool representing it's success.
@@ -83,109 +92,42 @@ public string getUserGuide()
 	}
  ```
 
-* __setBirthdayAPI(Date)__ : bool - This method should make a PUT/PATCH call to the user database API in order to add or change a user's birthday. This method takes as parameter a Date storing the value the user inserted as their birthday. This method returs a bool according to it's success.
-</br> Ex:
 
-```csharp
-public bool setBirthdayAPI(Date birthday)
-	{
 
-		if(birthdayDatePicker.Date < Date.Today()) //or any other restrictions the birthday might have(Could be made into a method of it's own)
-		{
-			
-			//Warn user date is not acceptable
-			return false;
-		}//It ins't possible to distinguish user error from API error with a bool, so maybe we should verify if date is acceptable in the window code
-		
-		using StringContent jsonContent = new(
-        	JsonSerializer.Serialize(new
-        	{
-            		birthday =  $"{birthday.ToString())}"
-        	}),
-        	Encoding.UTF8,
-        	"application/json");
-		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + this.getId(), jsonContent);
-		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
-		
-		this.setBirthday(birthday);
-		return true;
-	}
-```
-
-* __setPhoneNumber(string)__ : bool- This method should make a PUT/PATCH call to the user database API in order to add or change a user's phone number. This method takes as parameter a string storing the value the user wrote in the phoneNumber textbox. This method returs a bool according to it's success.
-</br> Ex:
-
-```csharp
-public bool setPhoneNumberAPI(string phoneNumber)
-	{
-		//validate phone number(Could be made into a method of it's own)
-		//It ins't possible to distinguish user error from API error with a bool, so maybe we should verify if date is acceptable in the window code
-		
-		using StringContent jsonContent = new(
-        	JsonSerializer.Serialize(new
-        	{
-            		phoneNumber =  $"{phoneNumber}"
-        	}),
-        	Encoding.UTF8,
-        	"application/json");
-		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + this.getId(), jsonContent);
-		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
-		
-		this.setPhoneNumber = phoneNumber
-		return true;
-	}
-```
-
-* __setEmail(string)__ : bool - This method should make a PUT/PATCH call to the user database API in order to change a user's email address. This method takes as parameter a string storing the new email the user wrote in the email textbox. This method returs a bool according to it's success.
-</br> Ex:
-
-```csharp
-public bool setEmailAPI(string email)
-	{
-		JsonSerializer.Serialize(new
-        	{
-            		email =  $"{email}"
-        	}),
-        	Encoding.UTF8,
-        	"application/json");
-		using HttpResponseMessage response = await httpClient.PatchAsync(userURL + "/" + this.getId(), jsonContent);
-		if((int)response.StatusCode==404) return false //Deal with patch failure (deal with other status codes)
-		
-		this.setEmail(email);
-		return true;
-	}
-```
 
 
 ### <p align="center">Authentication</p>
 
-* __login(User, string, string):bool__ - This method should allow a user to login into their previously created account. If the credentials inserted by the user are associated with an existing account that's stored in the user database, and the login process is successful, this method set the user instance with the other information stored about that particular user in the user database and returns it. It takes as parameters two strings, one storing the value the user wrote in the email textbox in the login view, and the other one storing the value they wrote in the password textbox in the login view, and a User instance. This method should return false in the case of login failure and true in the case of success.
+* __login(User, string, string):bool__ - This method should allow a user to login into their previously created account. If the credentials inserted by the user are associated with an existing account that's stored in the user database, and the login process is successful, this method updates the local user instance with the other information stored about that particular user in the user database. It takes as parameters two strings, one storing the value the user wrote in the id textbox in the login view, and the other one storing the value they wrote in the password textbox in the login view, and a User instance. This method should return false in the case of login failure and true in the case of success.
 </br> Ex:
 
 ```csharp
-public static bool login(User user, string email, string password)
+public static bool login(User user, string id, string password)
 	{
-		user.setEmail(email);
+				
+		using StringContent jsonContent = new(
+        	JsonSerializer.Serialize(new
+        	{
+			type = "Login"
+			id = $"{id}"
+			password = $"{password}"
+        	}),
+		Encoding.UTF8,
+        	"application/json");
+		
+		using HttpResponseMessage response = await httpClient.PostAsync(baseURL, jsonContent);
+		
+		if(response.StatusCode == "404") return false; //We could verify for more status codes, displaying different messages
+
+		user.setId(id);
 		user.setPassword(password);
 		
-		using HttpResponseMessage response = await httpClient.PostAsync(userURL + "/login", user);
-		
-		if(response.StatusCode == "404")//We could verify for more status codes, displaying different messages
-		{
-			user.setEmail(NULL);
-			user.setPassword(NULL);
-			//warn user login failed
-			return null;
-		}
-		
-		using HttpResponseMessage getResponse = await httpClient.GetAsync(userURL + "?email=" + email, jsonContent);				
+		using HttpResponseMessage getResponse = await httpClient.GetAsync(userURL + "?id=" + id, jsonContent);				
 		var jsonResponse = await getResponse.Content.ReadAsStringAsync();		
 		JsonNode jsonNode = JsonNode.Parse(jsonResponse);
 		
 		user.setLogged();
-		user.setId(Convert.ToInt32(jsonNode["id"]));
 		user.setEmail(jsonNode["email"]);
-		user.setPassword(jsonNode["password"]);
 		user.setPhoneNumber(Convert.ToInt32(jsonNode["phoneNumber"]));
 		user.setUserName(jsonNode["userName"]);
 		string birthday=jsonNode["birthday"];//verify if is null
@@ -203,7 +145,7 @@ public static bool logout(User user)
 	{
 		if(!user.getLogged()) return false
 		user.setLogged(); // if fails return false 
-		user.setId(0);//Some representation of no user
+		user.setId(NULL);
 		user.setEmail(NULL);
 		user.setPassword(NULL);
 		user.setEmail(NULL);
@@ -214,27 +156,36 @@ public static bool logout(User user)
 	}
 ```
 
-* __register(User, string,string):bool__ - This method should allow a user to register a new account for the application. If the credentials inserted by the user for the new account are accepted, and a new account is registered succesfully, this method creates a new User, storing the email, password and id retrieved from the database, and returns it. This method takes as parameter two strings, one storing the value the user wrote in the email textbox, and the other one storing what they wrote in the password textbox in the register view and an instance of User. This returns true in the case of registar success and false in the case of failure.
+* __register(User, string,string):bool__ - This method should allow a user to register a new account for the application. If the credentials inserted by the user for the new account are accepted, and a new account is registered succesfully, this method updates the local User instance, storing in it the id and password. This method takes as parameter two strings, one storing the value the user wrote in the id textbox, and the other one storing what they wrote in the password textbox in the register view and an instance of User. This returns true in the case of registar success and false in the case of failure.
 
 </br> Ex:
 
 ```csharp
-public static User register(User user, string email, string password)
-	{
-		user.setEmail(email);
-		user.setPassword(password);		
+public static bool register(User user, string id, string password)
+	{		
+		using StringContent jsonContent = new(
+        	JsonSerializer.Serialize(new
+        	{
+			type = "Register"
+			id = $"{id}"
+			password = $"{password}"
+            		username = NULL
+			email = NULL
+            		phoneNumber = NULL
+			birthday = NULL
+        	}),
+        	Encoding.UTF8,
+        	"application/json");
 	
-    		using HttpResponseMessage response = await httpClient.PostAsync(userURL + "/register", user);
-    		if((int)response.StatusCode==404)
-		{
-			user.setEmail(NULL);
-			user.setPassword(NULL);
-			return false; //Deal with post failure(other status codes too)
-		}
-		using HttpResponseMessage response = httpclient.GetAsync(userURL + "?email=" + email);		
-		var jsonResponse = await response.Content.ReadAsStringAsync();		
-		JsonNode jsonNode = JsonNode.Parse(jsonResponse);
-		user.setId(Convert.ToInt32(jsonNode["id"]));
+    		using HttpResponseMessage response = await httpClient.PostAsync(baseURL, jsonContent);
+    		if(response.StatusCode=="404") return false; // deal with other status codes
+
+		user.setId(id);
+		user.setPassword(password);
+		user.setUsername(NULL);
+		user.setEmail(NULL);
+		user.setPhoneNumber(NULL);
+		user.setBirthday(NULL);
 		user.setLogged();
 		
 		return true;
@@ -406,16 +357,18 @@ public bool ChangeLabel(enum motionType, int userId, int motionId){
 
 ### <p align="center">Equipment</p>
 
-* __connectEquipment(string, int, int):bool__ - This method is supposed to allow the user currently callingg it to connect to the sensors. If the equipment is available then the user should be able to connct to it, otherwise they should be warned of it's unavailability. This method takes as parameters a string and two integers. The string represents the type of equipment, and the integer represent the port and the ip of the sensor. This method returns a bool based on it's success
+* __connectEquipment(string, int, int):bool__ - This method is supposed to allow the user currently calling it to connect to the sensors. If the equipment is available then the user should be able to connect to it, otherwise they should be warned of it's unavailability. This method takes as parameters two strings and two integers. The first string represents the id of the user currently calling the method, and the second string represents the type of equipment. The integers represent the port and the ip of the sensor. This method returns a bool based on it's success
 
 </br> Ex:
 
 ```csharp
 
-public bool connectEquipment(string type, int ip, int port){
+public bool connectEquipment(string userId, string type, int ip, int port){
 	using StringContent jsonContent = new(
         	JsonSerializer.Serialize(new
         	{
+			Type = "ConnectEquipment"
+			id = $"{userId}"
             		ip = $"{ip}",
 			type = $"{type}",
 			port = $"{port}"
@@ -423,7 +376,7 @@ public bool connectEquipment(string type, int ip, int port){
         	Encoding.UTF8,
         	"application/json");
 		
-	HttpResponseMessage response = await client.PostAsync(sensorsURL + "/connect" , jsonContent);
+	HttpResponseMessage response = await client.PostAsync(baseURL , jsonContent);
 	
 	return response.IsSuccessStatusCode //Deal with the possibility of failure to connect
 }
