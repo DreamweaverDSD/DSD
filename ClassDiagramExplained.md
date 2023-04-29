@@ -545,7 +545,7 @@ public string getEquipmentStatus(){
 
 ```csharp
 
-public string getEquipmentStatus(){
+public string getEquipmentInfo(){
 	
 	HttpResponse response = await client.getAsync(sensorURL);
 	
