@@ -47,8 +47,8 @@ Week 5:\
 4.20 [Fourth Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)
 
 Week 6:\
-4.29 In the group meeting we discussed [what needed to be modified in SA](https://github.com/DreamweaverDSD/DSD/blob/main/meetings/4.29.pdf) after communicating with Server Group.
-
+4.29 In the group meeting we discussed [what needed to be modified in SA](https://github.com/DreamweaverDSD/DSD/blob/main/meetings/4.29.pdf) after communicating with Server Group.\
+4.30 [Fifth Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)
 
 # The Gantt chart of our group
 ```mermaid
