@@ -59,8 +59,8 @@ gantt
 title Gantt Chart of Dreamweaver
 dateFormat YY-MM-DD
 section mobile app
-Requirement Analysis  :done, requirement analysis, 23-03-18,23-04-07
-System Architecture   :active, system architecture, 23-04-07, 21d
-Programming           :programming, 23-04-29, 7d
+Requirement Analysis  :done, requirement analysis, 23-03-18, 23-04-07
+System Architecture   :active, system architecture, 23-04-01, 28d
+Programming           :programming, 23-04-14, 21d
 Test                  :test, after programming, 7d
 ```
