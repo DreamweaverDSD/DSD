@@ -50,14 +50,17 @@ Week 6:\
 4.29 In the group meeting we discussed [what needed to be modified in SA](https://github.com/DreamweaverDSD/DSD/blob/main/meetings/4.29.pdf) after communicating with Server Group.\
 4.30 [Fifth Draft of System Architecture](https://github.com/DreamweaverDSD/DSD/blob/main/ClassDiagramExplained.md)
 
+Week 7:\
+5.3 [The use case of Requirement Analysis of second iterator](https://github.com/DreamweaverDSD/DSD/blob/main/Require%20Analysis%202/UserUseDiagram.jpg)
+
 # The Gantt chart of our group
 ```mermaid
 gantt
 title Gantt Chart of Dreamweaver
 dateFormat YY-MM-DD
 section mobile app
-Requirement Analysis  :done, requirement analysis, 23-03-18,23-04-01
-System Architecture   :active, system architecture, 23-04-01, 14d
-Programming           :programming, 23-04-15, 14d
+Requirement Analysis  :done, requirement analysis, 23-03-18,23-04-07
+System Architecture   :active, system architecture, 23-04-07, 21d
+Programming           :programming, 23-04-29, 7d
 Test                  :test, after programming, 7d
 ```
