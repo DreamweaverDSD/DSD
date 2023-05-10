@@ -53,6 +53,10 @@ Week 6:\
 Week 7:\
 5.3 [The use case of Requirement Analysis of second iterator](https://github.com/DreamweaverDSD/DSD/blob/main/Require%20Analysis%202/UserUseDiagram.jpg)
 
+Week 8:\
+5.10 [The new version of class GetFromServer](https://github.com/DreamweaverDSD/DSD/blob/main/GUI_APP/GetFromServer.java)\
+We implement some functions to communicate with the interfaces that are already finished in [server group's code](https://github.com/HocRiser01/DSD_Server/blob/main/code/server.py)
+
 # The Gantt chart of our group
 ```mermaid
 gantt
@@ -61,6 +65,6 @@ dateFormat YY-MM-DD
 section mobile app
 Requirement Analysis  :done, requirement analysis, 23-03-18, 23-04-07
 System Architecture   :active, system architecture, 23-04-01, 28d
-Programming           :programming, 23-04-14, 21d
-Test                  :test, after programming, 7d
+Programming           :programming, 23-04-14, 35d
+Test                  :test, 23-05-03, 21d
 ```
