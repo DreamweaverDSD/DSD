@@ -57,6 +57,10 @@ Week 8:\
 5.10 [The new version of class GetFromServer](https://github.com/DreamweaverDSD/DSD/blob/main/GUI_APP/GetFromServer.java)\
 We implement some functions to communicate with the interfaces that are already finished in [server group's code](https://github.com/HocRiser01/DSD_Server/blob/main/code/server.py)
 
+Week 9:\
+5.13 We discussed about the testing work in the group meeting and the testers made sure about what method they're going to use in black-box testing.\
+5.17 [The first version of testing documentation](https://github.com/DreamweaverDSD/DSD/blob/main/test/UITestingDocumentation.docx)
+
 # The Gantt chart of our group
 ```mermaid
 gantt
