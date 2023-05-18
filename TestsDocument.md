@@ -46,6 +46,70 @@ With these options, the tester can send random events and control better the flo
 - Result – The textbox only accepts numbers
 
 **Password TextBox:**
+- Expected - The textbox is expected to accept any type of characters strings 
+- Result - The textbox accepts any type of characters
+
+#### Button test:
+
+**Submit Button:**
+- Expected - The button is expected to log in the user if credentials are correct or warn the user that credentials are incorrect 
+- Result - The integration with API is not done, so it is not possible to test this case
+
+**Register Button:**
+- Expected - The button is expected to take the user to the registration page 
+- Result - It takes the user to the registration page
+
+### Test case Registration
+
+#### Input Test:
+
+**Username TextBox:**
+- Expected - The textbox is expected to accept any type of character
+- Result - The textbox accepts any type of character
+
+**Password TextBox:**
+- Expected - The texbox is expected to accept any type of character
+-Result - The textbox accepts any type of characters
+
+**Repeat Password Textbox:**
+- Expected - The textbox is expected to accept any type of character 
+- Result - The textbox accepts any type of characters
+
+**Birthday Texbox:**
+- Expected - The textbox is expected to accept date format strings 
+- Result - The textbox accepts any type of characters
+
+**Phone Number Textbox:**
+- Expected - The textbox is expected to accept only numbers  
+- Result - The textbox accepts only numbers
+
+**Email address Textbox:**
+- Exptected - The textbox is expected to accept any type of characters 
+- Result - The textbox accepts any type of character
+
+#### Button Test:
+
+**Registration Button:**
+- Exptected - The button is expected to verify all formats inserted in the textboxes by the user and if successfull, take the user to the app 
+- Result - The integration with API is not done, so it is not possible to test this case 
+
+**Cancel Button:**
+- Expected - The button is expected to take the user back to the login page
+- Result - The button takes the user to the login page
+
+### Test case Main Page
+
+#### Button Test:
+
+**User Information Button:**
+
+**User Guide Button:**
+
+**Equipment Button:**
+
+**Data Button:**
+
+**Model Button:**
 
 [Insert testing results for password textbox]
 
