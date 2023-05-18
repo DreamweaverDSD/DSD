@@ -102,15 +102,52 @@ With these options, the tester can send random events and control better the flo
 #### Button Test:
 
 **User Information Button:**
+- Expected - The button is expteced to take the user to the User Information Page
+- Result - The button takes the user to the User Information Page
+
+   **User Information Button Page:**
+- Expected - Username,Phone Number,Birthday and email adress are exptected to be displayed in the page.
+- Result - Username,Phone Number,Birthday and email adress are not being displayed, needs to be connected to the server.
+
+   **Set User Information Button:**
+   - Expected - Expected to take the user to the User Information edit page
+   - Result - Tale the user succesfully to the User Information edit page
+**User Information edit page:**
+  #### Input Test
+  
+  **Birthday,phone number and email adress Textbox:**
+   - Expected - The birthday,phone number and email address textboxes are expected to be editable. Birthday and phone number textbox are expected to accept only numbers. Email textbox is expected to any type of character.
+   - Result - The birthday,phone number and email address textboxes are editable. Birthday and phone number textbox only accept numbers and email textbox accepts any type of character
+
+  #### Button Test
+  
+  **Commit Button:**
+  
+  - Expected - Commit button is expected to save the changes made by the user 
+  - Result - Commit button not working as expected. Needs to be connected with the API
+
+  **Cancel Button:**
+  
+  - Expected - Cancel button is expected to take the user back to the User Information page
+  - Result - Cancel button takes the user back to the User Information page.
+
 
 **User Guide Button:**
-
+- Expected - The button is expteced to take the user to the User Guide Page
+- Result - The button takes the user to the User Guide Page
+- 
 **Equipment Button:**
-
+- Expected - The button is expteced to take the user to the Equipment Page
+- Result - The button takes the user to the Equipment Page
+- 
 **Data Button:**
-
+- Expected - The button is expteced to take the user to the Data Page
+- Result - The button takes the user to the Data Page
+- 
 **Model Button:**
-
+- Expected - The button is expteced to take the user to the Model Page
+- Result - The button takes the user to the Model Page
+- 
 [Insert testing results for password textbox]
 
 
