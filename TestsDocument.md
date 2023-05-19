@@ -69,7 +69,7 @@ With these options, the tester can send random events and control better the flo
 
 **6-Password TextBox:**
 - Expected - The texbox is expected to accept any type of character
--Result - The textbox accepts any type of characters
+- Result - The textbox accepts any type of characters
 
 **7-Repeat Password Textbox:**
 - Expected - The textbox is expected to accept any type of character 
@@ -148,6 +148,13 @@ With these options, the tester can send random events and control better the flo
 **22-Model Button:**
 - Expected - The button is expteced to take the user to the Model Page
 - Result - The button takes the user to the Model Page
+
+
+
+-----------
+
+### Test case Data
+
 
 [Insert testing results for password textbox]
 
