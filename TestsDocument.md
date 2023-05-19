@@ -41,21 +41,21 @@ With these options, the tester can send random events and control better the flo
 
 #### Input test:
 
-**Username TextBox:**
+**1-Username TextBox:**
 - Expected – The textbox is expected to accept both numbers and letters
 - Result – The textbox only accepts numbers
 
-**Password TextBox:**
+**2-Password TextBox:**
 - Expected - The textbox is expected to accept any type of characters strings 
 - Result - The textbox accepts any type of characters
 
 #### Button test:
 
-**Submit Button:**
+**3-Submit Button:**
 - Expected - The button is expected to log in the user if credentials are correct or warn the user that credentials are incorrect 
 - Result - The integration with API is not done, so it is not possible to test this case
 
-**Register Button:**
+**4-Register Button:**
 - Expected - The button is expected to take the user to the registration page 
 - Result - It takes the user to the registration page
 
@@ -63,37 +63,37 @@ With these options, the tester can send random events and control better the flo
 
 #### Input Test:
 
-**Username TextBox:**
+**5-Username TextBox:**
 - Expected - The textbox is expected to accept any type of character
 - Result - The textbox accepts any type of character
 
-**Password TextBox:**
+**6-Password TextBox:**
 - Expected - The texbox is expected to accept any type of character
 -Result - The textbox accepts any type of characters
 
-**Repeat Password Textbox:**
+**7-Repeat Password Textbox:**
 - Expected - The textbox is expected to accept any type of character 
 - Result - The textbox accepts any type of characters
 
-**Birthday Texbox:**
+**8-Birthday Texbox:**
 - Expected - The textbox is expected to accept date format strings 
 - Result - The textbox accepts any type of characters
 
-**Phone Number Textbox:**
+**9-Phone Number Textbox:**
 - Expected - The textbox is expected to accept only numbers  
 - Result - The textbox accepts only numbers
 
-**Email address Textbox:**
+**10-Email address Textbox:**
 - Exptected - The textbox is expected to accept any type of characters 
 - Result - The textbox accepts any type of character
 
 #### Button Test:
 
-**Registration Button:**
+**11-Registration Button:**
 - Exptected - The button is expected to verify all formats inserted in the textboxes by the user and if successfull, take the user to the app 
 - Result - The integration with API is not done, so it is not possible to test this case 
 
-**Cancel Button:**
+**12-Cancel Button:**
 - Expected - The button is expected to take the user back to the login page
 - Result - The button takes the user to the login page
 
@@ -101,58 +101,84 @@ With these options, the tester can send random events and control better the flo
 
 #### Button Test:
 
-**User Information Button:**
+**13-User Information Button:**
 - Expected - The button is expteced to take the user to the User Information Page
 - Result - The button takes the user to the User Information Page
 
-   **User Information Button Page:**
+**14-User Information Button Page:**
 - Expected - Username,Phone Number,Birthday and email adress are exptected to be displayed in the page.
 - Result - Username,Phone Number,Birthday and email adress are not being displayed, needs to be connected to the server.
 
-   **Set User Information Button:**
-   - Expected - Expected to take the user to the User Information edit page
-   - Result - Tale the user succesfully to the User Information edit page
-**User Information edit page:**
-  #### Input Test
+**15-Set User Information Button:**
+- Expected - Expected to take the user to the User Information edit page
+- Result - The button succesfully took to the User Information edit page
+
+### Test case User Information edit page:
+
+#### Input Test
   
-  **Birthday,phone number and email adress Textbox:**
-   - Expected - The birthday,phone number and email address textboxes are expected to be editable. Birthday and phone number textbox are expected to accept only numbers. Email textbox is expected to any type of character.
+**16-Birthday,phone number and email adress Textbox:**
+   - Expected - The birthday,phone number and email address textboxes are expected to be editable. Birthday and phone number textbox are expected to accept only numbers. Email textbox is expected to accept any type of character.
    - Result - The birthday,phone number and email address textboxes are editable. Birthday and phone number textbox only accept numbers and email textbox accepts any type of character
 
-  #### Button Test
+#### Button Test
   
-  **Commit Button:**
-  
-  - Expected - Commit button is expected to save the changes made by the user 
-  - Result - Commit button not working as expected. Needs to be connected with the API
+**17-Commit Button:**  
+- Expected - Commit button is expected to save the changes made by the user 
+- Result - Commit button not working as expected. Needs to be connected with the API
 
-  **Cancel Button:**
-  
-  - Expected - Cancel button is expected to take the user back to the User Information page
-  - Result - Cancel button takes the user back to the User Information page.
+**18-Cancel Button:**
+- Expected - Cancel button is expected to take the user back to the User Information page
+- Result - Cancel button takes the user back to the User Information page.
 
 
-**User Guide Button:**
+**19-User Guide Button:**
 - Expected - The button is expteced to take the user to the User Guide Page
 - Result - The button takes the user to the User Guide Page
-- 
-**Equipment Button:**
+
+
+**20-Equipment Button:**
 - Expected - The button is expteced to take the user to the Equipment Page
 - Result - The button takes the user to the Equipment Page
-- 
-**Data Button:**
+
+**21-Data Button:**
 - Expected - The button is expteced to take the user to the Data Page
 - Result - The button takes the user to the Data Page
-- 
-**Model Button:**
+ 
+**22-Model Button:**
 - Expected - The button is expteced to take the user to the Model Page
 - Result - The button takes the user to the Model Page
-- 
+
 [Insert testing results for password textbox]
 
 
 
 [Rest of the test results]
+| Test Case No. | Module | Result | Corresponding Requirement |
+| :-----------: | :----: | :----: | :-----------------------: |
+|       1       |        | Failed ||
+|       2       |        | Passed ||
+|       3       |        |        ||
+|       4       |        | Passed ||
+|       5       |        | Passed ||
+|       6       |        | Passed ||
+|       7       |        | Passed ||
+|       8       |        | Passed ||
+|       9       |        | Passed ||
+|       10      |        | Passed ||
+|       11      |        |        ||
+|       12      |        | Passed ||
+|       13      |        | Passed ||
+|       14      |        |        ||
+|       15      |        | Passed ||
+|       16      |        | Passed ||
+|       17      |        |        ||
+|       18      |        | Passed ||
+|       19      |        | Passed ||
+|       20      |        | Passed ||
+|       21      |        | Passed ||
+|       22      |        | Passed ||
+
 
 ## 3. Conclusion:
 
