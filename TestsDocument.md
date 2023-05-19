@@ -153,7 +153,74 @@ With these options, the tester can send random events and control better the flo
 
 -----------
 
-### Test case Data
+
+
+### Test case Data page:
+
+#### Button Test
+
+**23-Get Data List Button:**
+- Expected - GUI gets data information from data database
+- Result - Button not working as expected, occasionaly leading to crashes or returning the user to the main activity page. Needs to be connected with the API
+
+**24-Discard Data Button:**
+- Expected - GUI send delete request to delete data entry from Database
+- Result - Button not working as expected, occasionaly leading to crashes or returning the user to the main activity page. Needs to be connected with the API
+
+**25-Change Data Label Button:**
+- Expected - GUI sends a request to alter the label of a data entry to the data database with a new label value
+- Result - Button not working as expected, occasionaly leading to crashes or returning the user to the main activity page. Needs to be connected with the API
+
+**26-Back Button:**
+- Expected - GUI sends the user back to the main menu
+- Result - The button takes the user to the main menu
+
+
+### Test case Prediction Model page: 
+
+#### Button Test
+
+**27-Show Model Info Button:**
+- Expected - GUI tries to get the prediction model's information from the server.
+- Result - The button is not working as expected, crashing the application. Needs to be connected with the API
+
+**28-Reset Model Button:**
+- Expected - GUI sends the user to the reset model window ???
+- Result - The button takes the user to the reset model window
+
+**29-Predict User Motion Button:**
+- Expected - GUI sends the user to the window where the prediction graph will be displayed
+- Result - The button takes the user to the window where the prediction graph will be displayed
+
+**30-Back Button:**
+- Expected - GUI sends the user back to the main menu
+- Result - The button takes the user to the main activity
+
+
+### Test case Reset Prediction Model page: 
+
+#### Button Test
+
+**31-Submit Button:**
+- Expected - The request button to reset the user's prediction model is sent to the server
+- Result - Pressing the button invokes no response. Needs to be connected with the API.
+
+**32-Back Button:**
+- Expected - GUI sends the user back to the Prediction Model window
+- Result - The button takes the user to the Prediction Model window
+
+
+### Test case Prediction Graph page: 
+
+#### Button Test
+
+**33-Return Button:**
+- Expected - GUI sends the user back to the Prediction Model window
+- Result - The button takes the user to the Prediction Model window
+
+**34-End Button:**
+- Expected - Stops the device from requesting prediction data and sends the user back to the Prediction Model window
+- Result - The button successfully takes the user to the Prediction Model window. Needs to be connected with API in order to add the remaining behaviour
 
 
 [Insert testing results for password textbox]
@@ -161,30 +228,42 @@ With these options, the tester can send random events and control better the flo
 
 
 [Rest of the test results]
-| Test Case No. | Module | Result | Corresponding Requirement |
-| :-----------: | :----: | :----: | :-----------------------: |
-|       1       |        | Failed ||
-|       2       |        | Passed ||
-|       3       |        |        ||
-|       4       |        | Passed ||
-|       5       |        | Passed ||
-|       6       |        | Passed ||
-|       7       |        | Passed ||
-|       8       |        | Passed ||
-|       9       |        | Passed ||
-|       10      |        | Passed ||
-|       11      |        |        ||
-|       12      |        | Passed ||
-|       13      |        | Passed ||
-|       14      |        |        ||
-|       15      |        | Passed ||
-|       16      |        | Passed ||
-|       17      |        |        ||
-|       18      |        | Passed ||
-|       19      |        | Passed ||
-|       20      |        | Passed ||
-|       21      |        | Passed ||
-|       22      |        | Passed ||
+| Test Case No. | Module |                                                                              Result                                                                         | Corresponding Requirement |
+| :-----------: | :----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------: |
+|       1       |        |                                    Failed - The textbox should accept both letters and numbers but only accepts numbers                                     |                           |
+|       2       |        |                                                                              Passed                                                                         |                           |
+|       3       |        |                                                                                                                                                             |                           |
+|       4       |        |                                                                              Passed                                                                         |                           |
+|       5       |        |                                                                              Passed                                                                         |                           |
+|       6       |        |                                                                              Passed                                                                         |                           |
+|       7       |        |                                                                              Passed                                                                         |                           |
+|       8       |        |                                                                              Passed                                                                         |                           |
+|       9       |        |                                                                              Passed                                                                         |                           |
+|       10      |        |                                                                              Passed                                                                         |                           |
+|       11      |        |                                                                                                                                                             |                           |
+|       12      |        |                                                                              Passed                                                                         |                           |
+|       13      |        |                                                                              Passed                                                                         |                           |
+|       14      |        |                                                                                                                                                             |                           |
+|       15      |        |                                                                              Passed                                                                         |                           |
+|       16      |        |                                                                              Passed                                                                         |                           |
+|       17      |        |                                                                                                                                                             |                           |
+|       18      |        |                                                                              Passed                                                                         |                           |
+|       19      |        |                                                                              Passed                                                                         |                           |
+|       20      |        |                                                                              Passed                                                                         |                           |
+|       21      |        |                                                                              Passed                                                                         |                           |
+|       22      |        |                                                                              Passed                                                                         |                           |
+|       23      |        | Failed - Button not working as expected, occasionaly leading to crashes or returning the user to the main activity page. Needs to be connected with the API |                           |
+|       24      |        | Failed - Button not working as expected, occasionaly leading to crashes or returning the user to the main activity page. Needs to be connected with the API |                           |
+|       25      |        | Failed - Button not working as expected, occasionaly leading to crashes or returning the user to the main activity page. Needs to be connected with the API |                           |
+|       26      |        |                                                                              Passed                                                                         |                           |
+|       27      |        |                            Failed - The button is not working as expected, crashing the application. Needs to be connected with the API                     |                           |
+|       28      |        |                                                                              Passed                                                                         |                           |
+|       29      |        |                                                                              Passed                                                                         |                           |
+|       30      |        |                                                                              Passed                                                                         |                           |
+|       31      |        |                                     Failed - Pressing the button invokes no response. Needs to be connected with the API.                                   |                           |
+|       32      |        |                                                                              Passed                                                                         |                           |
+|       33      |        |                                                                              Passed                                                                         |                           |
+|       34      |        |    Failed - The button successfully takes the user to the Prediction Model window. Needs to be connected with API in order to add the remaining behaviour   |                           |    
 
 
 ## 3. Conclusion:
