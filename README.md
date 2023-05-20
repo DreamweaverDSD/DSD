@@ -1,8 +1,9 @@
 # This is the page for GUI team of distributed development of software between JLU and UTAD.
 Hello, everyone!
 
-[This is the organization of our group on GitHub.](https://github.com/DreamweaverDSD)
+[This is the page of the whole project of the DSD course.](https://github.com/michro/DSD/wiki)
 
+[This is the organization of our group on GitHub.](https://github.com/DreamweaverDSD)
 
 # our team members
 
