@@ -131,9 +131,10 @@ With these options, the tester can send random events and control better the flo
 - Expected - Cancel button is expected to take the user back to the User Information page
 - Result - Cancel button takes the user back to the User Information page.
 
+### Main Page
 
 **19-User Guide Button:**
-- Expected - The button is expteced to take the user to the User Guide Page
+- Expected - The button is expteced to take the user to the User Guide Page and view the guide's text
 - Result - The button takes the user to the User Guide Page
 
 
@@ -223,11 +224,85 @@ With these options, the tester can send random events and control better the flo
 - Result - The button successfully takes the user to the Prediction Model window. Needs to be connected with API in order to add the remaining behaviour
 
 
-[Insert testing results for password textbox]
+### Test case Equipment Page
+
+**35-Bind a equipment button:**
+- Expected - Expected to send the user to the connect to equipment page
+- Result - Sends the user to the connect to equipment page
+
+**36-Connect button:**
+- Expected -  Expected to connect successfully with the equipment with the respectve IP adress
+- Result - The integration with server-side is still not working, so it isn't connecting yet
+
+**37-Back button:**
+- Expected -  Expected to send the user back to the Equipment page
+- Result - Sends te user to the equipment page.
+
+**38-Get equipment information button:**
+- Expected -  Expected to send the user to the equipment information page
+- Result - Sends the user to the information page
+
+**39-Back button:**
+- Expected -  Expected send the user back to the equipment page
+- Result - Sends the user to the equipment page
+
+**40-Get equipment status button:**
+- Expected -  Expected to send the user to the equipment status page
+- Result - Sends the user back to the main page
+
+**41-Collect Data button:**
+- Expected -  Expected to send the user to the collect data page
+- Result - Sends the user back to the collect data page
+
+**42-Start button:**
+- Expected -  Expected to start collecting the data depending on the option of type of data
+- Result - The Integration with the server-side is still not working, so it isn't connecting yet
+
+**43-End button:**
+- Expected -  Expected to end collecting the type of data that was being collected
+- Result - The integration with the server-side is still not working, so it isn't connecting yet
+
+**44-Back button:**
+- Expected -  Expected to send the user to the equipment page
+- Result - Sends the user back to the Equipment page
+
+**45-Unbind equipment button:**
+- Expected -  Expected to send the user to the Unbind page
+- Result - Sends the user to the Unbind page
+
+**46-Submit button:**
+- Expected -  Expected to Unbind the equipment currently connected
+- Result - Cannot unbind, because there is no equipment connected beforehand and needs to be connected to server
+
+**47-Back button:**
+- Expected -  Expected to send the user to the Equipment page
+- Result - Sends the user back to the Equipment page
+
+**48-Back To main menu button:**
+- Expected -  Expected to send the user back to the mainpage
+- Result - Sends the user back to the main page
+
+#### Input Test
+
+**49-IP adress inputs:**
+- Expected -  Expected accept 1 byte individually and verify if the range is valid (0-255)
+- Result - Verifyies all restrictions
+
+**50-Port input:**
+- Expected -  Expected accept valid port number (0-65535)
+- Result - Verifyies if the port is valid or not
+
+**51-Type of data collected radio button:**
+- Expected -  Expected to be selected when user interacts with it
+- Result - It is selected when interacted
+
+### Test case User Guide Page
+
+**52-Back to main menu button:**
+- Expected -  Expected to send the user back to the main page
+- Result - Sends the user back to the main page
 
 
-
-[Rest of the test results]
 | Test Case No. | Module |                                                                              Result                                                                         | Corresponding Requirement |
 | :-----------: | :----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------: |
 |       1       |        |                                    Failed - The textbox should accept both letters and numbers but only accepts numbers                                     |                           |
@@ -264,6 +339,24 @@ With these options, the tester can send random events and control better the flo
 |       32      |        |                                                                              Passed                                                                         |                           |
 |       33      |        |                                                                              Passed                                                                         |                           |
 |       34      |        |    Failed - The button successfully takes the user to the Prediction Model window. Needs to be connected with API in order to add the remaining behaviour   |                           |    
+|       35      |        |                                                                              Passed                                                                         |                           |
+|       36      |        |    Failed - The integration with server-side is still not working, so it isn't connecting                                                                   |                           |
+|       37      |        |                                                                              Passed                                                                         |                           |
+|       38      |        |                                                                              Passed                                                                         |                           |
+|       39      |        |                                                                              Passed                                                                         |                           |
+|       40      |        |    Failed - Sends the user back to the main page                                                                                                            |                           |
+|       41      |        |                                                                              Passed                                                                         |                           |
+|       42      |        |    Failed - The Integration with the server-side is still not working, so it isn't connecting yet                                                           |                           |
+|       43      |        |    Faled - The integration with the server-side is still not working, so it isn't connecting yet                                                            |                           |
+|       44      |        |                                                                               Passed                                                                        |                           |
+|       45      |        |                                                                                Passed                                                                       |                           |
+|       46      |        |    Failed - Cannot unbind, because there is no equipment connected beforehand and needs to be connected to server                                           |                           |
+|       47      |        |                                                                                 Passed                                                                      |                           |
+|       48      |        |                                                                                 Passed                                                                      |                           |
+|       49      |        |                                                                                 Passed                                                                      |                           |
+|       50      |        |                                                                                 Passed                                                                      |                           |
+|       51      |        |                                                                                 Passed                                                                      |                           |
+|       52      |        |                                                                                 Passed                                                                      |                       
 
 
 ## 3. Conclusion:
