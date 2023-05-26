@@ -307,60 +307,60 @@ With these options, the tester can send random events and control better the flo
 - Result - Sends the user back to the main page
 
 
-| Test Case No. | Module |                                                                              Result                                                                         | Corresponding Requirement |
+| Test Case No. | Module |                                                                              Result                                   | Corresponding Requirement |
 | :-----------: | :----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------: |
-|       1       |        |                                    Failed - The textbox should accept both letters and numbers but only accepts numbers                                     |                           |
-|       2       |        |                                                                              Passed                                                                         |                           |
-|       3       |        |                                                                                                                                                             |                           |
-|       4       |        |                                                                              Passed                                                                         |                           |
-|       5       |        |                                                                              Passed                                                                         |                           |
-|       6       |        |                                                                              Passed                                                                         |                           |
-|       7       |        |                                                                              Passed                                                                         |                           |
-|       8       |        |                                                                              Passed                                                                         |                           |
-|       9       |        |                                                                              Passed                                                                         |                           |
-|       10      |        |                                                                              Passed                                                                         |                           |
-|       11      |        |                                                                                                                                                             |                           |
-|       12      |        |                                                                              Passed                                                                         |                           |
-|       13      |        |                                                                              Passed                                                                         |                           |
-|       14      |        |                                                                                                                                                             |                           |
-|       15      |        |                                                                              Passed                                                                         |                           |
-|       16      |        |                                                                              Passed                                                                         |                           |
-|       17      |        |                                                                                                                                                             |                           |
-|       18      |        |                                                                              Passed                                                                         |                           |
-|       19      |        |                                                                              Passed                                                                         |                           |
-|       20      |        |                                                                              Passed                                                                         |                           |
-|       21      |        |                                                                              Passed                                                                         |                           |
-|       22      |        |                                                                              Passed                                                                         |                           |
-|       23      |        | Failed - Button not working as expected, occasionaly leading to crashes or returning the user to the main activity page. Needs to be connected with the API |                           |
-|       24      |        | Failed - Button not working as expected, occasionaly leading to crashes or returning the user to the main activity page. Needs to be connected with the API |                           |
-|       25      |        | Failed - Button not working as expected, occasionaly leading to crashes or returning the user to the main activity page. Needs to be connected with the API |                           |
-|       26      |        |                                                                              Passed                                                                         |                           |
-|       27      |        |                            Failed - The button is not working as expected, crashing the application. Needs to be connected with the API                     |                           |
-|       28      |        |                                                                              Passed                                                                         |                           |
-|       29      |        |                                                                              Passed                                                                         |                           |
-|       30      |        |                                                                              Passed                                                                         |                           |
-|       31      |        |                                     Failed - Pressing the button invokes no response. Needs to be connected with the API.                                   |                           |
-|       32      |        |                                                                              Passed                                                                         |                           |
-|       33      |        |                                                                              Passed                                                                         |                           |
-|       34      |        |    Failed - The button successfully takes the user to the Prediction Model window. Needs to be connected with API in order to add the remaining behaviour   |                           |    
-|       35      |        |                                                                              Passed                                                                         |                           |
-|       36      |        |    Failed - The integration with server-side is still not working, so it isn't connecting                                                                   |                           |
-|       37      |        |                                                                              Passed                                                                         |                           |
-|       38      |        |                                                                              Passed                                                                         |                           |
-|       39      |        |                                                                              Passed                                                                         |                           |
-|       40      |        |    Failed - Sends the user back to the main page                                                                                                            |                           |
-|       41      |        |                                                                              Passed                                                                         |                           |
-|       42      |        |    Failed - The Integration with the server-side is still not working, so it isn't connecting yet                                                           |                           |
-|       43      |        |    Faled - The integration with the server-side is still not working, so it isn't connecting yet                                                            |                           |
-|       44      |        |                                                                               Passed                                                                        |                           |
-|       45      |        |                                                                                Passed                                                                       |                           |
-|       46      |        |    Failed - Cannot unbind, because there is no equipment connected beforehand and needs to be connected to server                                           |                           |
-|       47      |        |                                                                                 Passed                                                                      |                           |
-|       48      |        |                                                                                 Passed                                                                      |                           |
-|       49      |        |                                                                                 Passed                                                                      |                           |
-|       50      |        |                                                                                 Passed                                                                      |                           |
-|       51      |        |                                                                                 Passed                                                                      |                           |
-|       52      |        |                                                                                 Passed                                                                      |                       
+|       1       | Android|                                    Failed - The textbox should accept both letters and numbers but only accepts numbers         |1|
+|       2       | Android|                                                                              Passed                                             |1|
+|       3       | Android|                                                                       Test not conducted                                        |1|
+|       4       | Android|                                                                              Passed                                             |1|
+|       5       | Android|                                                                              Passed                                             |3|
+|       6       | Android|                                                                              Passed                                             |3|
+|       7       | Android|                                                                              Passed                                             |3|
+|       8       | Android|                                                                              Passed                                             |3|
+|       9       | Android|                                                                              Passed                                             |3|
+|       10      | Android|                                                                              Passed                                             |3|
+|       11      | Android|                                                                       Test not conducted                                        |3|
+|       12      | Android|                                                                              Passed                                             |3|
+|       13      | Android|                                                                              Passed                                             |5|
+|       14      | Android|                                                                       Test not conducted                                        |5.1|
+|       15      | Android|                                                                              Passed                                             |5.2|
+|       16      | Android|                                                                              Passed                                             |5.2, 5.2.1|
+|       17      | Android|                                                                       Test not conducted                                        |5.2, 5.2.1|
+|       18      | Android|                                                                              Passed                                             |5.2, 5.2.1|
+|       19      | Android|                                                                              Passed                                             |7|
+|       20      | Android|                                                                              Passed                                             |6|
+|       21      | Android|                                                                              Passed                                             | |
+|       22      | Android|                                                                              Passed                                             |8|              
+|       23      | Android| Failed - Button not working as expected, occasionaly leading to crashes or returning the user to the main activity page. Needs to be connected with the API |10.2|
+|       24      | Android| Failed - Button not working as expected, occasionaly leading to crashes or returning the user to the main activity page. Needs to be connected with the API |10.3|
+|       25      | Android| Failed - Button not working as expected, occasionaly leading to crashes or returning the user to the main activity page. Needs to be connected with the API |10.4|
+|       26      | Android|                                                                              Passed                                              ||
+|       27      | Android|                            Failed - The button is not working as expected, crashing the application. Needs to be connected with the API |9.5|
+|       28      | Android|                                                                              Passed                                              |8.1|
+|       29      | Android|                                                                              Passed                                              |9.4|
+|       30      | Android|                                                                              Passed                                              ||
+|       31      | Android|                                     Failed - Pressing the button invokes no response. Needs to be connected with the API.        |8.1|
+|       32      | Android|                                                                              Passed                                              ||
+|       33      | Android|                                                                              Passed                                              ||
+|       34      | Android|    Failed - The button successfully takes the user to the Prediction Model window. Needs to be connected with API in order to add the remaining behaviour   ||    
+|       35      | Android|                                                                              Passed                                              |6.1|
+|       36      | Android|    Failed - The integration with server-side is still not working, so it isn't connecting                                        |6.1|
+|       37      | Android|                                                                              Passed                                              ||
+|       38      | Android|                                                                              Passed                                              |6.2|
+|       39      | Android|                                                                              Passed                                              ||
+|       40      | Android|    Failed - Sends the user back to the main page                                                                                 |6.4|
+|       41      | Android|                                                                              Passed                                              |6.5|
+|       42      | Android|    Failed - The Integration with the server-side is still not working, so it isn't connecting yet                                |6.5|
+|       43      | Android|    Faled - The integration with the server-side is still not working, so it isn't connecting yet                                 |6.5|
+|       44      | Android|                                                                               Passed                                             ||
+|       45      | Android|                                                                                Passed                                            |6.3|
+|       46      | Android|    Failed - Cannot unbind, because there is no equipment connected beforehand and needs to be connected to server                |6.3|
+|       47      | Android|                                                                                 Passed                                           ||
+|       48      | Android|                                                                                 Passed                                           ||
+|       49      | Android|                                                                                 Passed                                           |6.1|
+|       50      | Android|                                                                                 Passed                                           |6.1|
+|       51      | Android|                                                                                 Passed                                           |6.5|
+|       52      | Android|                                                                                 Passed                                           ||                       
 
 
 ## 3. Conclusion:
