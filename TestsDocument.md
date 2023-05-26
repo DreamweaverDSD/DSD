@@ -226,6 +226,8 @@ With these options, the tester can send random events and control better the flo
 
 ### Test case Equipment Page
 
+#### Button Test
+
 **35-Bind a equipment button:**
 - Expected - Expected to send the user to the connect to equipment page
 - Result - Sends the user to the connect to equipment page
@@ -297,6 +299,8 @@ With these options, the tester can send random events and control better the flo
 - Result - It is selected when interacted
 
 ### Test case User Guide Page
+
+#### Button Test
 
 **52-Back to main menu button:**
 - Expected -  Expected to send the user back to the main page
